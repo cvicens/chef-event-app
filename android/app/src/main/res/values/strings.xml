@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">P_8Ht1DobcOtjh6l6PLIgVIdcrH6NJe0oUuAz</string>
     <string name="app_name">Chef</string>
 </resources>

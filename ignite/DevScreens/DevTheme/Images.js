@@ -1,6 +1,7 @@
 // leave off @2x/@3x
 const images = {
   igniteClear: require('../Images/ignite-logo-transparent.png'),
+  cauldron: require('../Images/cauldron.png'),
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/BG.png'),
   api: require('../Images/Icons/icon-api-testing.png'),

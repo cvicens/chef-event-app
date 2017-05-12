@@ -54,12 +54,12 @@ class PresentationScreen extends React.Component {
         </TouchableOpacity>
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
           <View style={styles.centered}>
-            <Image source={Images.igniteClear} style={styles.logo} />
+            <Image source={Images.cauldron} style={styles.logo} />
           </View>
 
           <Text style={styles.sectionText}>
-            Default screens for development, debugging, and alpha testing
-            are available below.
+            Welcome to this experience, here you'll cook with a real cook and at the same time 
+            you'll learn how easy it is to create an App...
           </Text>
           <View style={styles.buttonsContainer}>
             <ButtonBox onPress={this.openComponents} style={styles.componentButton} image={Images.components} text='Components' />

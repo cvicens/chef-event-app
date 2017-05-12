@@ -1,3 +1,9 @@
+warning "enzyme@2.8.2" has incorrect peer dependency "react@0.13.x || 0.14.x || ^15.0.0-0 || 15.x".
+warning "react-dom@15.5.4" has incorrect peer dependency "react@^15.5.4".
+warning "reactotron-react-native@1.10.0" has incorrect peer dependency "react@>=15.2.1".
+warning "react-static-container@1.0.1" has incorrect peer dependency "react@^0.13.0 || ^0.14.0 || ^15.0.0".
+
+
 #  Chef
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 

@@ -8,11 +8,21 @@ import ReduxPersist from '../Config/ReduxPersist'
 // Styles
 import styles from './Styles/RootContainerStyles'
 
+function *hello() {
+  yield 'step 1 — cut a hole in a box'
+  yield 'step 2 ...'
+}
+
+var iter = hello();
+
+console.log(iter.next());
+console.log(iter.next());
+
 class RootContainer extends Component {
   componentDidMount () {
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
-      this.props.startup()
+      this.props.startup();
     }
   }
 

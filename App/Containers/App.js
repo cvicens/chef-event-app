@@ -1,8 +1,11 @@
+import codePush from "react-native-code-push";
 import '../Config'
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
+
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, installMode: codePush.InstallMode.IMMEDIATE };
 
 // create our store
 const store = createStore()
@@ -26,4 +29,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default codePush(codePushOptions)(App)
