@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import { path } from 'ramda'
-import CurriculumActions from '../Redux/CurriculumRedux'
+import RecipeActions from '../Redux/RecipeRedux'
 
 const RCTFH = require('rct-fh');
 
@@ -14,14 +14,14 @@ function _log(message) {
   }
 }
 
-export function * fetchCurriculum (action) {
+export function * fetchRecipe (action) {
   const { eventId } = action
-  _log('In CurriculumSaga');
+  _log('In RecipeSaga');
 
    if (__DEV__ && console.tron) {
       console.tron.display({
-      name: '🔥 In CurriculumSaga ### 🔥',
-        preview: 'fetchCurriculum',
+      name: '🔥 In RecipeSaga ### 🔥',
+        preview: 'fetchRecipe',
         value: {
           '💃': 'Welcome to the future!',
           action,
@@ -32,7 +32,7 @@ export function * fetchCurriculum (action) {
 
   try {
     var options = {
-        "path": "/curricula", //only the path part of the url, the host will be added automatically
+        "path": "/recipes", //only the path part of the url, the host will be added automatically
         "method": "POST", //all other HTTP methods are supported as well. For example, HEAD, DELETE, OPTIONS
         "contentType": "application/json",
         "data": { eq: { id: "0001" } }, //data to send to the server
@@ -43,13 +43,13 @@ export function * fetchCurriculum (action) {
 
     if (result) {
       _log('about to yield success')
-      yield put(CurriculumActions.fetchSuccess(result));
+      yield put(RecipeActions.fetchRecipeSuccess(result));
     } else {
       _log('about to yield failure')
-      yield put(CurriculumActions.fetchFailure(result));
+      yield put(RecipeActions.fetchRecipeFailure(result));
     }
   } catch (e) {
     _log('about to yield failure (exception)')
-    yield put(CurriculumActions.fetchFailure(e));
+    yield put(RecipeActions.fetchRecipeFailure(e));
   }
 }

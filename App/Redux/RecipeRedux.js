@@ -10,12 +10,12 @@ function _log(message) {
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  fetchRequest: ['eventId'],
-  fetchSuccess: ['result'],
-  fetchFailure: ['errorMessage']
+  fetchRecipeRequest: ['eventId'],
+  fetchRecipeSuccess: ['result'],
+  fetchRecipeFailure: ['errorMessage']
 })
 
-export const CurriculumTypes = Types
+export const RecipeTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -24,7 +24,7 @@ export const INITIAL_STATE = Immutable({
   fetching: null,
   error: null,
   result: null,
-  firstName: null, lastName: null, nickName: null, biography: null, photo: null, restaurant: null, distinctions: null,
+  title: null, photo: null, ingredients: null, directions: null,
   errorMessage: null,
   errorReason: null,
   errorDescription: null,
@@ -36,25 +36,22 @@ export const INITIAL_STATE = Immutable({
 
 // request the sdk initialization
 export const request = (state, action) => {
-  _log('At CurriculumRedux: request');
+  _log('At RecipeRedux: request');
   const { eventId } = action;
   return state.merge({ fetching: true, eventId, result: {}, error: false, errorMessage: null });
 }
 
 // successful sdk initialization
 export const success = (state, action) => {
-  _log('At CurriculumRedux: success');
+  _log('At RecipeRedux: success');
   const { result } = action;
-  const firstName = result[0].firstName;
-  const lastName = result[0].lastName;
-  const nickName = result[0].nickName;
-  const biography = result[0].biography;
+  const title = result[0].title;
   const photo = result[0].photo;
-  const restaurant = result[0].restaurant;
-  const distinctions = result[0].distinctions;
+  const ingredients = result[0].ingredients;
+  const directions = result[0].directions;
   return state.merge({ 
     fetching: false, error: false, 
-    result, firstName, lastName, nickName, biography, photo, restaurant, distinctions,
+    result, title, photo, ingredients, directions,
     errorMessage: null, errorDescription: null, errorReason: null, errorRecoverySuggestion: null })
 }
 
@@ -68,14 +65,14 @@ export const failure = (state, action) => {
   return state.merge({ 
     fetching: false, error: true, 
     eventId: null,
-    result: null, firstName: null, lastName: null, nickName: null, biography: null, photo: null, restaurant: null, distinctions: null,
+    result: null, title: null, photo: null, ingredients: null, directions: null,
     errorMessage, errorDescription, errorReason, errorRecoverySuggestion });
 }
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FETCH_REQUEST]: request,
-  [Types.FETCH_SUCCESS]: success,
-  [Types.FETCH_FAILURE]: failure
+  [Types.FETCH_RECIPE_REQUEST]: request,
+  [Types.FETCH_RECIPE_SUCCESS]: success,
+  [Types.FETCH_RECIPE_FAILURE]: failure
 })

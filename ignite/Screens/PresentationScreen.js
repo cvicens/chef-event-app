@@ -12,6 +12,7 @@ import ThemeScreen from './ThemeScreen'
 import FaqScreen from './FaqScreen'
 
 import CurriculumScreen from './CurriculumScreen'
+import RecipeScreen from './RecipeScreen'
 
 // Styles
 import styles from './Styles/PresentationScreenStyles'
@@ -20,6 +21,10 @@ class PresentationScreen extends React.Component {
 
   openCurriculum = () => {
     this.props.navigation.navigate('CurriculumScreen')
+  }
+
+  openRecipe = () => {
+    this.props.navigation.navigate('RecipeScreen')
   }
 
   openComponents = () => {
@@ -69,7 +74,7 @@ class PresentationScreen extends React.Component {
           </Text>
           <View style={styles.buttonsContainer}>
             <ButtonBox onPress={this.openCurriculum} style={styles.componentButton} image={Images.components} text='Curriculum' />
-            <ButtonBox onPress={this.openUsage} style={styles.usageButton} image={Images.usageExamples} text='Plugin Examples' />
+            <ButtonBox onPress={this.openRecipe} style={styles.usageButton} image={Images.usageExamples} text='Recipe' />
           </View>
           <View style={styles.buttonsContainer}>
             <ButtonBox onPress={this.openComponents} style={styles.componentButton} image={Images.components} text='Components' />
@@ -97,6 +102,7 @@ export default StackNavigator({
   APITestingScreen: {screen: APITestingScreen},
   ComponentExamplesScreen: {screen: ComponentExamplesScreen},
   CurriculumScreen: {screen: CurriculumScreen},
+  RecipeScreen: {screen: RecipeScreen},
   DeviceInfoScreen: {screen: DeviceInfoScreen},
   PluginExamplesScreen: {screen: PluginExamplesScreen},
   ThemeScreen: {screen: ThemeScreen},

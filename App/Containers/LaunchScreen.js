@@ -55,10 +55,7 @@ class LaunchScreen extends React.Component {
             <Text style={styles.sectionText}>
               {"Welcome to this 'cooking' experience, here, besides real cooking you'll learn how to 'cook' your best App ;-)"}
             </Text>
-            <Text style={styles.sectionText}>Fetching? {this.props.fetching ? 'true' : 'false'}</Text>
           </View>
-
-          <Button title='INit!' onPress={this.onInit}/>
 
           <LaunchButton disabled={this.props.fetching}/>
         </ScrollView>
@@ -78,14 +75,11 @@ class LaunchScreen extends React.Component {
             <Text style={styles.sectionText}>
               {"Welcome to this 'cooking' experience, here, besides real cooking you'll learn how to 'cook' your best App ;-)"}
             </Text>
-            <Text style={styles.sectionText}>Fetching? {this.props.fetching ? 'true' : 'false'}</Text>
-            <Text style={styles.sectionText}>Show modal? {this.props.showPresentation ? 'true' : 'false'}</Text>
           </View>
 
           <RoundedButton onPress={this.togglePresentation}>
           Let's cook!
           </RoundedButton>
-          <Text style={styles.sectionText}>Show modal? {this.props.showPresentation ? 'true' : 'false'}</Text>
           <Modal
             visible={this.props.showPresentation}
             onRequestClose={this.togglePresentation}>

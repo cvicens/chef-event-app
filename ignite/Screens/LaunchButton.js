@@ -40,7 +40,6 @@ export default class LaunchButton extends React.Component {
     console.log('&&&&&&> render launchbuton showModal', this.state.showModal, ' disabled ',this.state.showModal, ' kkk', this.state.kkk);
     return (
       <View>
-        <Text style={styles.sectionText}>Show modal? {this.state.showModal ? 'true' : 'false'} {this.state.kkk}</Text>
         <RoundedButton onPress={this.toggleModal} disabled={this.state.disabled}>
           Let's cook!
         </RoundedButton>

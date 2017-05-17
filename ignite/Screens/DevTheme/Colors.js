@@ -11,7 +11,12 @@ const colors = {
   fire: '#ff3832',
   eggplant: '#251a34',
   border: '#483F53',
-  text: '#E0D7E5'
+  text: '#E0D7E5',
+  wenge: '#614C61',
+  backgroundLigther: '#5D3C5E',
+  backgroundDarker: '#785779',
+  rowTopBorder: '#B39FB4',
+  rowBottomBorder: '#2E0D2F',
 }
 
 export default colors

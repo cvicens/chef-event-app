@@ -12,21 +12,6 @@ import CurriculumActions from '../../App/Redux/CurriculumRedux'
 // Styles
 import styles from './Styles/CurriculumScreenStyles'
 
-const _styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 0
-   },
-   activityIndicator: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: 80
-   }
-});
-
 class CurriculumScreen extends React.Component {
   constructor (props) {
     super(props)
@@ -46,16 +31,17 @@ class CurriculumScreen extends React.Component {
   render () {
     if (this.props.fetching) {
       return (
-        <View style = {[_styles.container, {backgroundColor: '#3e253e'}]}>
+        <View style = {[styles.activityIndicatorContainer]}>
          <ActivityIndicator animating = {this.props.fetching}
-           style = {_styles.activityIndicator} size = "large"
+           style = {styles.activityIndicator} size = "large"
          />
       </View>
         )
     }
 
-    return (
-      <View style={[styles.mainContainer, {backgroundColor: '#3e253e'}]}>
+    if (this.props.errorMessage) {
+      return (
+         <View style={[styles.mainContainer, {backgroundColor: '#3e253e'}]}>
 
         <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
           position: 'absolute',
@@ -72,16 +58,52 @@ class CurriculumScreen extends React.Component {
           </View>
           <View style={styles.section}>
             <Text style={styles.sectionText}>
-              Testing API with Postman or APIary.io verifies the server works.
-              The API Test screen is the next step; a simple in-app way to verify and debug your in-app API functions.
+              Error while fetching the curriculum
+            </Text>
+            <Text style={styles.sectionText}>{this.props.errorReason}</Text>
+            <Text style={styles.sectionText}>{this.props.errorDescription}</Text>
+            <Text style={styles.sectionText}>{this.props.errorRecoverySuggestion}</Text>
+          </View>
+          
+        </ScrollView>
+      </View>
+      )
+    }
+
+    return (
+      <View style={[styles.mainContainer]}>
+
+        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
+          position: 'absolute',
+          paddingTop: 30,
+          paddingHorizontal: 5,
+          zIndex: 10
+        }}>
+          <Image source={Images.backButton} />
+        </TouchableOpacity>
+        
+        <ScrollView style={styles.container} ref='container'>
+          <View style={styles.curriculumHeader}>
+            <View style={styles.curriculumHeaderContainer}>
+            <View style={styles.curriculumDistinctionColumn}>
+              <Image source={Images.michelinStar} style={styles.curriculumDistinction} />
+              <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.michelin} stars</Text>
+            </View>
+            <Image source={{uri: this.props.photo}} style={styles.curriculumPhoto} />
+            <View style={styles.curriculumDistinctionColumn}>
+              <Image source={Images.laListe} style={styles.curriculumDistinction} />
+              <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.la_liste} %</Text>
+            </View>
+            </View>
+            <Text style={styles.curriculumTitleText}>{this.props.nickName}</Text>
+            <Text style={styles.curriculumSubtitleText}>{this.props.restaurant}</Text>
+          </View>
+          <View style={styles.curriculumSection}>
+            <Text style={[styles.curriculumText, {margin: 10}]}>
+              {this.props.biography}
             </Text>
           </View>
-          <RoundedButton onPress={this.fetchCurriculum}>Let's cook!</RoundedButton>
-          <Text style={styles.sectionText}>{this.props.fetching}</Text>
-          <Text style={styles.sectionText}>{this.props.result.msg}</Text>
-          <Text style={styles.sectionText}>{this.props.errorReason}</Text>
-          <Text style={styles.sectionText}>{this.props.errorDescription}</Text>
-          <Text style={styles.sectionText}>{this.props.errorRecoverySuggestion}</Text>
+          
         </ScrollView>
       </View>
     )
@@ -89,21 +111,45 @@ class CurriculumScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  var errorMessage = state.curriculum.errorMessage || {};
+  return {
+    fetching: state.curriculum.fetching,
+    error: state.curriculum.error,
+    result: state.curriculum.result,
+    firstName: state.curriculum.firstName, 
+    lastName: state.curriculum.lastName, 
+    nickName: state.curriculum.nickName, 
+    biography: state.curriculum.biography, 
+    photo: state.curriculum.photo, 
+    restaurant: state.curriculum.restaurant, 
+    distinctions: state.curriculum.distinctions,
+    errorMessage: state.curriculum.errorMessage,
+    errorReason: state.curriculum.errorReason,
+    errorDescription: state.curriculum.errorDescription,
+    errorRecoverySuggestion: state.curriculum.errorRecoverySuggestion
+  }
+}
+
+const mapStateToPropsOld = (state) => {
+  var errorMessage = state.curriculum.errorMessage;
+  var result = state.curriculum.result;
   var errorDescription = null;
-  if (errorMessage && errorMessage.userInfo) {
-    errorReason = errorMessage.userInfo.NSLocalizedFailureReason;
-    errorDescription = errorMessage.userInfo.NSLocalizedDescription;
-    errorRecoverySuggestion = errorMessage.userInfo.NSLocalizedRecoverySuggestion;
+  if (state.curriculum.error) {
+    result = null;
+    errorReason = state.curriculum.errorReason;
+    errorDescription = state.curriculum.errorDescription;
+    errorRecoverySuggestion = state.curriculum.errorRecoverySuggestion;
   } else {
+    result = state.curriculum.result[0] || {};
+    errorMessage = null;
     errorReason = null;
     errorDescription = null;
     errorRecoverySuggestion = null;
   }
   return {
     fetching: state.curriculum.fetching,
-    result: state.curriculum.result || {},
-    errorMessage: state.curriculum.errorMessage || {},
+    error: state.curriculum.error,
+    result: result,
+    errorMessage: errorMessage,
     errorReason: errorReason,
     errorDescription: errorDescription,
     errorRecoverySuggestion: errorRecoverySuggestion

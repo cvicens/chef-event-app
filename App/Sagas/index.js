@@ -11,6 +11,7 @@ import { LoginTypes } from '../Redux/LoginRedux'
 import { OpenScreenTypes } from '../Redux/OpenScreenRedux'
 import { InitTypes } from '../Redux/InitRedux'
 import { CurriculumTypes } from '../Redux/CurriculumRedux'
+import { RecipeTypes } from '../Redux/RecipeRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -20,6 +21,7 @@ import { getUserAvatar } from './GithubSagas'
 import { openScreen } from './OpenScreenSagas'
 import { init } from './InitSagas'
 import { fetchCurriculum } from './CurriculumSagas'
+import { fetchRecipe} from './RecipeSagas'
 
 /* ------------- API ------------- */
 
@@ -37,6 +39,7 @@ export default function * root () {
     takeLatest(OpenScreenTypes.OPEN_SCREEN, openScreen),
     takeLatest(InitTypes.INIT_REQUEST, init),
     takeLatest(CurriculumTypes.FETCH_REQUEST, fetchCurriculum),
+    takeLatest(RecipeTypes.FETCH_RECIPE_REQUEST, fetchRecipe),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)

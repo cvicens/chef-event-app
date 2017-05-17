@@ -14,7 +14,11 @@ const images = {
   chevronRight: require('../Images/Icons/chevron-right.png'),
   hamburger: require('../Images/Icons/hamburger.png'),
   backButton: require('../Images/Icons/back-button.png'),
-  closeButton: require('../Images/Icons/close-button.png')
+  closeButton: require('../Images/Icons/close-button.png'),
+  michelinStar: require('../Images/Icons/michelin-star.png'),
+  laListe: require('../Images/Icons/la-liste.png'),
+  ingredients: require('../Images/ingredients.jpg'),
+  directions: require('../Images/directions.jpg')
 }
 
 export default images
