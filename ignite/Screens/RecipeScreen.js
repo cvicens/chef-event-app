@@ -23,7 +23,7 @@ class RecipeScreen extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.fetchRecipe();
+    this.props.fetchRecipe(this.props.eventId);
   }
 
   renderIngredients = () => {
@@ -167,6 +167,7 @@ class RecipeScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    eventId: state.init.eventId,
     fetching: state.recipe.fetching,
     error: state.recipe.error,
     result: state.recipe.result,
@@ -184,7 +185,7 @@ const mapStateToProps = (state) => {
 
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = (dispatch) => ({
-  fetchRecipe: () => dispatch(RecipeActions.fetchRecipeRequest('0001'))
+  fetchRecipe: (eventId) => dispatch(RecipeActions.fetchRecipeRequest(eventId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeScreen)

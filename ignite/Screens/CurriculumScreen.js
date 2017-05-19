@@ -21,7 +21,7 @@ class CurriculumScreen extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.fetchCurriculum();
+    this.props.fetchCurriculum(this.props.eventId);
   }
 
   fetchCurriculum = () => {
@@ -112,6 +112,7 @@ class CurriculumScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    eventId: state.init.eventId,
     fetching: state.curriculum.fetching,
     error: state.curriculum.error,
     result: state.curriculum.result,
@@ -158,7 +159,7 @@ const mapStateToPropsOld = (state) => {
 
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurriculum: () => dispatch(CurriculumActions.fetchRequest('1234567890'))
+  fetchCurriculum: (eventId) => dispatch(CurriculumActions.fetchRequest(eventId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurriculumScreen)

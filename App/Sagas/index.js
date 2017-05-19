@@ -19,7 +19,7 @@ import { startup } from './StartupSagas'
 import { login } from './LoginSagas'
 import { getUserAvatar } from './GithubSagas'
 import { openScreen } from './OpenScreenSagas'
-import { init } from './InitSagas'
+import { init, findEvent } from './InitSagas'
 import { fetchCurriculum } from './CurriculumSagas'
 import { fetchRecipe} from './RecipeSagas'
 
@@ -35,10 +35,19 @@ export default function * root () {
   yield [
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
+    
     takeLatest(LoginTypes.LOGIN_REQUEST, login),
+    
     takeLatest(OpenScreenTypes.OPEN_SCREEN, openScreen),
+    
     takeLatest(InitTypes.INIT_REQUEST, init),
+    takeLatest(InitTypes.FIND_EVENT_REQUEST, findEvent),
+    //takeLatest(InitTypes.UPDATE_COUNTRY, updateCountry),
+    //takeLatest(InitTypes.UPDATE_CITY, updateCity),
+    //takeLatest(InitTypes.UPDATE_EVENT_ID, updateEventId),
+
     takeLatest(CurriculumTypes.FETCH_REQUEST, fetchCurriculum),
+
     takeLatest(RecipeTypes.FETCH_RECIPE_REQUEST, fetchRecipe),
 
     // some sagas receive extra parameters in addition to an action

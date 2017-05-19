@@ -38,6 +38,7 @@
     "react-native-device-info": "0.10.2",
     "react-native-drawer": "2.3.0",
     "react-native-i18n": "^1.0.0",
+    "react-native-modal-picker": "^0.0.16",
     "react-native-router-flux": "3.38.0",
     "react-native-vector-icons": "^4.0.1",
     "react-navigation": "git+https://github.com/react-community/react-navigation.git#7edd9a7",

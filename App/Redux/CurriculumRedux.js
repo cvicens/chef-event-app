@@ -1,6 +1,8 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
+import InitActions from './InitRedux'
+
 function _log(message) {
    if (__DEV__ && console.tron) {
     console.tron.log(message);
