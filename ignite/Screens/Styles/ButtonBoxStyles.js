@@ -7,7 +7,7 @@ export default StyleSheet.create({
     aspectRatio: 0.9,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.eggplant
+    backgroundColor: Colors.buttonBackground
   },
   image: {
     width: Metrics.icons.xl,
@@ -17,6 +17,6 @@ export default StyleSheet.create({
   label: {
     ...Fonts.style.h2,
     fontSize: 14,
-    color: Colors.text
+    color: Colors.buttonText
   }
 })

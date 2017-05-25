@@ -10,14 +10,14 @@ export default StyleSheet.create({
   container: {
       flex: 1,
       //paddingTop: Metrics.baseMargin,
-      backgroundColor: Colors.wenge
+      backgroundColor: Colors.backgroundLight
   },
   activityIndicatorContainer: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 0,
-      backgroundColor: Colors.background
+      backgroundColor: Colors.backgroundTranslucent
    },
    activityIndicator: {
       flex: 1,
@@ -25,8 +25,19 @@ export default StyleSheet.create({
       alignItems: 'center',
       height: 80
    },
+   recipeSectionHeader: {
+      flex: 1,
+      //flexDirection: 'row',
+      borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
+      borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 2
+   },
+   recipeSectionTitle: {
+      fontSize: 25,
+      paddingTop: 5,
+      color: Colors.sectionTitle,
+   },
    recipeTitleText: {
-      fontSize: 50,
+      fontSize: 30,
       paddingTop: 10,
       color: Colors.text
     },
@@ -56,9 +67,10 @@ export default StyleSheet.create({
   },
   recipeSection: {
       //borderRadius: 10,
-      backgroundColor: Colors.snow,
+      backgroundColor: Colors.backgroundLight,
       //margin: Metrics.section,
       //padding: Metrics.baseMargin
+      marginTop: 10
   },
   recipeSectionColumn: {
       flex: 1,
@@ -68,7 +80,7 @@ export default StyleSheet.create({
   },
   recipeText: {
       ...Fonts.normal,
-      color: Colors.snow,
+      color: Colors.sectionHeaderText,
       textAlign: 'justify'
   },
   recipePhoto: {
@@ -122,25 +134,28 @@ export default StyleSheet.create({
   recipeDirectionColumnA: {
     flex: 1, 
     justifyContent: 'center', alignItems: 'center', 
-    backgroundColor: Colors.backgroundDarker, 
-    borderTopColor: Colors.rowTopBorder, borderBottomColor: Colors.rowBottomBorder,
-    borderLeftWidth: 0, borderTopWidth: 1, borderRightWidth: 0, borderBottomWidth: 1
+    backgroundColor: Colors.backgroundLigth, 
+    borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
+    borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   },
   recipeDirectionColumnB: {
     flex: 4, 
-    backgroundColor: Colors.backgroundLigther,
-    borderTopColor: Colors.rowTopBorder, borderBottomColor: Colors.rowBottomBorder,
-    borderLeftWidth: 0, borderTopWidth: 1, borderRightWidth: 0, borderBottomWidth: 1
+    backgroundColor: Colors.backgroundLigth,
+    borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
+    borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   },
   recipeDirectionsText: {
       ...Fonts.normal,
       color: Colors.ro,
       textAlign: 'justify'
   },
+  recipeIngredientsRow: {
+    flex: 1, flexDirection: 'row'
+  },
   recipeIngredientsColumn: {
     flex: 1, 
-    backgroundColor: Colors.backgroundLigther,
-    borderTopColor: Colors.rowTopBorder, borderBottomColor: Colors.rowBottomBorder,
-    borderLeftWidth: 0, borderTopWidth: 1, borderRightWidth: 0, borderBottomWidth: 1
+    backgroundColor: Colors.backgroundLigth,
+    borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
+    borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   }
 })

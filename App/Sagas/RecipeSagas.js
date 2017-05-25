@@ -15,7 +15,7 @@ function _log(message) {
 }
 
 export function * fetchRecipe (action) {
-  const { eventId } = action
+  const { recipeId } = action
   _log('In RecipeSaga');
 
    if (__DEV__ && console.tron) {
@@ -23,9 +23,8 @@ export function * fetchRecipe (action) {
       name: '🔥 In RecipeSaga ### 🔥',
         preview: 'fetchRecipe',
         value: {
-          '💃': 'Welcome to the future!',
           action,
-          eventId: eventId
+          recipeId: recipeId
         }
       });
    }
@@ -35,7 +34,7 @@ export function * fetchRecipe (action) {
         "path": "/recipes", //only the path part of the url, the host will be added automatically
         "method": "POST", //all other HTTP methods are supported as well. For example, HEAD, DELETE, OPTIONS
         "contentType": "application/json",
-        "data": { eq: { id: "0001" } }, //data to send to the server
+        "data": { eq: { id: recipeId} }, //data to send to the server
         "timeout": 25000 // timeout value specified in milliseconds. Default: 60000 (60s)
       }
     const result = yield call(RCTFH.cloud, options);

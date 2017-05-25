@@ -10,31 +10,18 @@ export default StyleSheet.create({
   container: {
       flex: 1,
       //paddingTop: Metrics.baseMargin,
-      backgroundColor: Colors.wenge
+      backgroundColor: Colors.backgroundLight
   },
-  activityIndicatorContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 0,
-      backgroundColor: Colors.background
-   },
-   activityIndicator: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: 80
-   },
    curriculumTitleText: {
       fontSize: 20,
       paddingTop: 10,
-      color: Colors.text
+      color: Colors.headerText
     },
    curriculumSubtitleText: {
       fontWeight: 'normal',
       fontStyle: 'italic',
       fontSize: 14,
-      color: Colors.text
+      color: Colors.headerText
    },
    curriculumHeaderContainer: {
       flexDirection: 'row',
@@ -43,24 +30,29 @@ export default StyleSheet.create({
    curriculumDistinctionText: {
       fontWeight: 'normal',
       fontStyle: 'italic',
-    fontSize: 14,
-      color: Colors.text
+      fontSize: 14,
+      color: Colors.headerText
    },
    curriculumHeader: {
       flex: 1,
       //paddingTop: Metrics.baseMargin,
       paddingTop: 40,
       paddingBottom: 20,
-      backgroundColor: Colors.background,
+      backgroundColor: Colors.transparent,
       alignItems: 'center',
   },
   curriculumSection: {
       //borderRadius: 10,
-      backgroundColor: Colors.snow,
+      backgroundColor: Colors.backgroundLight,
       //margin: Metrics.section,
       //padding: Metrics.baseMargin
     },
-  curriculumText: {
+  curriculumBioTitle: {
+      ...Fonts.style.h2,
+      color: Colors.charcoal,
+      textAlign: 'justify'
+  },
+  curriculumBioText: {
       ...Fonts.normal,
       color: Colors.charcoal,
       textAlign: 'justify'

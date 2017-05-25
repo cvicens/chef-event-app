@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { ScrollView, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
+
+import BackgroundImage from '../../App/Components/BackgroundImage'
+
+// Navigation
 import { StackNavigator } from 'react-navigation'
+
 // Screens
 import APITestingScreen from './APITestingScreen'
 import ComponentExamplesScreen from './ComponentExamplesScreen'
@@ -18,6 +23,16 @@ import RecipeScreen from './RecipeScreen'
 import styles from './Styles/PresentationScreenStyles'
 
 class PresentationScreen extends React.Component {
+  static propTypes = {
+    test: PropTypes.string
+  }
+  
+  componentWillMount = () => {
+    console.log('✨ PresentationScreen props', this.props);
+    if (this.props.screenProps.eventId === null || this.props.screenProps.eventId.length <= 0) {
+      this.props.screenProps.toggle();
+    }
+  }
 
   openCurriculum = () => {
     this.props.navigation.navigate('CurriculumScreen')
@@ -54,7 +69,7 @@ class PresentationScreen extends React.Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        
         <TouchableOpacity onPress={this.props.screenProps.toggle} style={{
           position: 'absolute',
           paddingTop: 30,
@@ -64,34 +79,28 @@ class PresentationScreen extends React.Component {
           <Image source={Images.closeButton} />
         </TouchableOpacity>
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.cauldron} style={styles.logo} />
+
+          <View style={styles.headerContent}>
+  
+            <BackgroundImage image={Images.presentation} resizeMode='cover'>
+            <Text style={styles.headerSectionText}>
+              Welcome Julia to this experience, here you'll cook with a real cook and at the same time you'll learn how easy it is to create an App
+            </Text>
+            </BackgroundImage>
+
           </View>
 
-          <Text style={styles.sectionText}>
-            Welcome to this experience, here you'll cook with a real cook and at the same time 
-            you'll learn how easy it is to create an App... XD
-          </Text>
           <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openCurriculum} style={styles.componentButton} image={Images.components} text='Curriculum' />
-            <ButtonBox onPress={this.openRecipe} style={styles.usageButton} image={Images.usageExamples} text='Recipe' />
+            <ButtonBox onPress={this.openCurriculum} style={styles.baseLeftButton} image={Images.components} text='Curriculum' />
+            <ButtonBox onPress={this.openRecipe} style={styles.baseRightButton} image={Images.usageExamples} text='Recipe' />
           </View>
           <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openComponents} style={styles.componentButton} image={Images.components} text='Components' />
-            <ButtonBox onPress={this.openUsage} style={styles.usageButton} image={Images.usageExamples} text='Plugin Examples' />
+            <ButtonBox onPress={this.openDevice} style={styles.baseDownLeftButton} image={Images.deviceInfo} text='Device Info' />
+            <ButtonBox onPress={this.openFaq} style={styles.baseDownRightButton} image={Images.faq} text='FAQ' />
           </View>
-          <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openApi} style={styles.apiButton} image={Images.api} text='API Testing' />
-            <ButtonBox onPress={this.openTheme} image={Images.theme} text='Theme' />
-          </View>
-          <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openDevice} style={styles.deviceButton} image={Images.deviceInfo} text='Device Info' />
-            <ButtonBox onPress={this.openFaq} style={styles.usageButton} image={Images.faq} text='FAQ' />
-          </View>
+           
         </ScrollView>
-        <View style={styles.banner}>
-          <Text style={styles.bannerLabel}>Made with ❤️ by Infinite Red</Text>
-        </View>
+        
       </View>
     )
   }

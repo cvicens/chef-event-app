@@ -15,6 +15,13 @@ import FaqScreen from './FaqScreen'
 import styles from './Styles/PresentationScreenStyles'
 
 class PresentationScreen extends React.Component {
+  static propTypes = {
+    eventId: PropTypes.string
+  }
+  
+  componentWillMount = () => {
+    console.log('✨ PresentationScreen props', this.props);
+  }
 
   openComponents = () => {
     this.props.navigation.navigate('ComponentExamplesScreen')

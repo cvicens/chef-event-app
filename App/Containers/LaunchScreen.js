@@ -1,10 +1,11 @@
 import React from 'react'
-import { ScrollView, Text, Image, View, Button, TextInput } from 'react-native'
+import { ScrollView, Text, Image, View, Button, TextInput, ActivityIndicator } from 'react-native'
 import LaunchButton from '../../ignite/Screens/LaunchButton.js'
 
 import { Modal, StyleSheet, Fonts, Metrics } from 'react-native'
 import DebugConfig from '../Config/DebugConfig'
 import RoundedButton from '../Components/RoundedButton'
+import BackgroundImage from '../Components/BackgroundImage'
 import PresentationScreen from '../../ignite/Screens/PresentationScreen'
 
 import ModalPicker from 'react-native-modal-picker'
@@ -18,12 +19,16 @@ import InitActions from '../Redux/InitRedux'
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
+// App state
+import { AppState } from 'react-native'
+
 class LaunchScreen extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            textInputValue: ''
+            textInputValue: '',
+            appState: AppState.currentState
         }
 
         let index = 0;
@@ -47,12 +52,35 @@ class LaunchScreen extends React.Component {
         };
     }
 
+  _handleAppStateChange = (nextAppState) => {
+    console.log('😲 😲 😲 nextAppState', nextAppState);
+
+    //if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+    //  console.log('App has come to the foreground!');
+
+      // If the app is activated... but there's no city selected... we have to stay in this screen...
+      // this means... updating showPresentation to false, so that the modal is not shown
+      console.log ('eventId', this.props.eventId, 'country', this.props.country, 'city', this.props.city);
+      if (nextAppState === 'active' && this.props.city === null) {
+        this.props.updateShowPresentation(false);
+      }
+   // }
+
+    //this.setState({appState: nextAppState});
+  }
+
   componentWillMount = () => {
     this.props.init();
+    console.log('✨ LaunchScreen props', this.props);
   }
 
   componentDidMount = () => {
     //this.props.init();
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,12 +91,12 @@ class LaunchScreen extends React.Component {
         if (this.props.country && this.props.city) {
           // Then the have to be different (at least one of them)
           if (this.props.country.code !== nextProps.country.code || this.props.city !== nextProps.city) {
-            console.log ('\\\\\\\\\\\\> Launch findEventRequest()', nextProps.country.code, nextProps.city, this.props.country, this.props.city);
+            //console.log ('\\\\\\\\\\\\> Launch findEventRequest()', nextProps.country.code, nextProps.city, this.props.country, this.props.city);
             this.props.findEventRequest(nextProps.country, nextProps.city);
           }
         } else {
           // There are no old values (or just one of them)
-          console.log ('\\\\\\\\\\\\> Launch findEventRequest()', nextProps.country.code, nextProps.city, this.props.country, this.props.city);
+          //console.log ('\\\\\\\\\\\\> Launch findEventRequest()', nextProps.country.code, nextProps.city, this.props.country, this.props.city);
           this.props.findEventRequest(nextProps.country, nextProps.city);
         }
       }
@@ -91,8 +119,19 @@ class LaunchScreen extends React.Component {
   }
 
   render () {
-    console.log('ooooo> LaunchScreen render fetching?', this.props.fetching, JSON.stringify(new Date()), '<ooooo');
+    console.log('🎥 LaunchScreen render?', this.props, JSON.stringify(new Date()), '🎬');
   
+    if (!this.props.ready) {
+      return (
+        <View style = {[styles.activityIndicatorContainer]}>
+         <ActivityIndicator animating = {!this.props.ready}
+           style = {styles.activityIndicator} size = "large"
+         />
+      </View>
+        )
+    }
+
+
     let index = 0;
     const countries = [
         { key: index++, label: '🇪🇸 Spain', isocode: 'es', code: 'SPAIN' },
@@ -115,7 +154,7 @@ class LaunchScreen extends React.Component {
 
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        <BackgroundImage image={Images.background}>
         <ScrollView style={styles.container}>
           <View style={styles.centered}>
             <Image source={Images.launch} style={styles.logo} />
@@ -124,7 +163,7 @@ class LaunchScreen extends React.Component {
           <View style={styles.section} >
             <Image source={Images.ready} />
             <Text style={styles.sectionText}>
-              {"Welcome to this 'cooking' experience, here, besides real cooking you'll learn how to 'cook' your best App ;-)"}
+              {"Welcome to this 'cooking' experience, here, besides real cooking you'll learn how to 'cook' your best App ;-) "}
             </Text>
 
             <View style={styles.modalPickerSection} >
@@ -160,19 +199,21 @@ class LaunchScreen extends React.Component {
           </RoundedButton>
 
           <Modal
-            visible={this.props.showPresentation}
+            visible={this.props.ready && this.props.showPresentation && (this.props.eventId !== null && this.props.eventId.length > 0)}
             onRequestClose={this.togglePresentation}>
-            <PresentationScreen screenProps={{ toggle: this.togglePresentation }} />
+            <PresentationScreen screenProps={{ eventId: this.props.eventId, toggle: this.togglePresentation }} />
           </Modal>
         </ScrollView>
+        </BackgroundImage>
       </View>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('state', state);
+  console.log('🔥 state', state);
   return {
+    ready: state.init.ready,
     fetching: state.init.fetching,
     country: state.init.country,
     city: state.init.city,
@@ -185,6 +226,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   init: () => dispatch(InitActions.initRequest()),
   togglePresentation: () => dispatch(InitActions.togglePresentation()),
+  updateShowPresentation: (showPresentation) => dispatch(InitActions.updateShowPresentation(showPresentation)),
   updateCountry: (country) => dispatch(InitActions.updateCountry(country)),
   updateCity: (city) => dispatch(InitActions.updateCity(city)),
   findEventRequest: (country, city) => dispatch(InitActions.findEventRequest(country, city)),

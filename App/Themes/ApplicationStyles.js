@@ -18,6 +18,44 @@ const ApplicationStyles = {
       bottom: 0,
       right: 0
     },
+    backgroundImageCover: {
+      flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'cover'
+    },
+    headerContent:{
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+  headerSectionText: {
+    height: 150,
+    textAlign: 'center',
+    fontFamily: Fonts.base,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginHorizontal: Metrics.baseMargin,
+    //lineHeight: 30,
+    marginTop: 60,
+    //marginVertical: Metrics.doubleBaseMargin,
+    color: Colors.headerText,
+    backgroundColor: Colors.transparent,
+  },
+  activityIndicatorContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 0,
+      backgroundColor: Colors.backgroundTranslucent
+   },
+   activityIndicator: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 80
+   },
     container: {
       flex: 1,
       paddingTop: Metrics.baseMargin,

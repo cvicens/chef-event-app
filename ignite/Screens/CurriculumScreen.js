@@ -5,6 +5,8 @@ import { Metrics, Images } from './DevTheme'
 import FullButton from '../../App/Components/FullButton'
 import RoundedButton from '../../App/Components/RoundedButton'
 
+import BackgroundImage from '../../App/Components/BackgroundImage'
+
 // Redux stuff
 import { connect } from 'react-redux'
 import CurriculumActions from '../../App/Redux/CurriculumRedux'
@@ -21,7 +23,7 @@ class CurriculumScreen extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.fetchCurriculum(this.props.eventId);
+    this.props.fetchCurriculum(this.props.chefId);
   }
 
   fetchCurriculum = () => {
@@ -35,7 +37,7 @@ class CurriculumScreen extends React.Component {
          <ActivityIndicator animating = {this.props.fetching}
            style = {styles.activityIndicator} size = "large"
          />
-      </View>
+        </View>
         )
     }
 
@@ -83,23 +85,34 @@ class CurriculumScreen extends React.Component {
         </TouchableOpacity>
         
         <ScrollView style={styles.container} ref='container'>
-          <View style={styles.curriculumHeader}>
-            <View style={styles.curriculumHeaderContainer}>
-            <View style={styles.curriculumDistinctionColumn}>
-              <Image source={Images.michelinStar} style={styles.curriculumDistinction} />
-              <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.michelin} stars</Text>
-            </View>
-            <Image source={{uri: this.props.photo}} style={styles.curriculumPhoto} />
-            <View style={styles.curriculumDistinctionColumn}>
-              <Image source={Images.laListe} style={styles.curriculumDistinction} />
-              <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.la_liste} %</Text>
-            </View>
-            </View>
-            <Text style={styles.curriculumTitleText}>{this.props.nickName}</Text>
-            <Text style={styles.curriculumSubtitleText}>{this.props.restaurant}</Text>
+          <View style={styles.headerContent}>
+  
+            <BackgroundImage image={Images.presentation} resizeMode='cover'>
+              <View style={styles.curriculumHeader}>
+                <View style={styles.curriculumHeaderContainer}>
+                  <View style={styles.curriculumDistinctionColumn}>
+                    <Image source={Images.michelinStar} style={styles.curriculumDistinction} />
+                    <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.michelin} stars</Text>
+                  </View>
+                  <Image source={{uri: this.props.photo}} style={styles.curriculumPhoto} />
+                  <View style={styles.curriculumDistinctionColumn}>
+                    <Image source={Images.laListe} style={styles.curriculumDistinction} />
+                    <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.la_liste} %</Text>
+                  </View>
+                </View>
+                <Text style={styles.curriculumTitleText}>{this.props.nickName}</Text>
+                <Text style={styles.curriculumSubtitleText}>{this.props.restaurant}</Text>
+              </View>
+            </BackgroundImage>
+
           </View>
+
           <View style={styles.curriculumSection}>
-            <Text style={[styles.curriculumText, {margin: 10}]}>
+            <Text style={[styles.curriculumBioTitle, {margin: 10}]}>
+              Biography
+            </Text>
+
+            <Text style={[styles.curriculumBioText, {margin: 10}]}>
               {this.props.biography}
             </Text>
           </View>
@@ -113,6 +126,7 @@ class CurriculumScreen extends React.Component {
 const mapStateToProps = (state) => {
   return {
     eventId: state.init.eventId,
+    chefId: state.init.chefId,
     fetching: state.curriculum.fetching,
     error: state.curriculum.error,
     result: state.curriculum.result,
@@ -159,7 +173,7 @@ const mapStateToPropsOld = (state) => {
 
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = (dispatch) => ({
-  fetchCurriculum: (eventId) => dispatch(CurriculumActions.fetchRequest(eventId))
+  fetchCurriculum: (chefId) => dispatch(CurriculumActions.fetchRequest(chefId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurriculumScreen)

@@ -4744,9 +4744,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-rct-fh@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/rct-fh/-/rct-fh-0.0.13.tgz#07ac2c07a2a5b7947e7016087b356dc0d505c869"
+rct-fh@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/rct-fh/-/rct-fh-0.0.14.tgz#7a13f3d1023ab57d1cae60dcbf3a7107e80c5ece"
 
 react-addons-create-fragment@^15.4.0:
   version "15.5.3"
@@ -4886,6 +4886,10 @@ react-native-mock@^0.3.1:
 react-native-modal-picker@^0.0.16:
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/react-native-modal-picker/-/react-native-modal-picker-0.0.16.tgz#c9324d880a3bb8f36b772f378164977e2f431cbc"
+
+react-native-pullable-view@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-pullable-view/-/react-native-pullable-view-1.0.2.tgz#78074d60b431361a9de995d91edd2d576202cd68"
 
 react-native-router-flux@3.38.0:
   version "3.38.0"

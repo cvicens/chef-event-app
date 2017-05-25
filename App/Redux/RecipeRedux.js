@@ -10,7 +10,7 @@ function _log(message) {
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  fetchRecipeRequest: ['eventId'],
+  fetchRecipeRequest: ['recipeId'],
   fetchRecipeSuccess: ['result'],
   fetchRecipeFailure: ['errorMessage']
 })
@@ -29,7 +29,7 @@ export const INITIAL_STATE = Immutable({
   errorReason: null,
   errorDescription: null,
   errorRecoverySuggestion: null,
-  eventId: null
+  recipeId: null,
 })
 
 /* ------------- Reducers ------------- */
@@ -37,8 +37,8 @@ export const INITIAL_STATE = Immutable({
 // request the sdk initialization
 export const request = (state, action) => {
   _log('At RecipeRedux: request');
-  const { eventId } = action;
-  return state.merge({ fetching: true, eventId, result: {}, error: false, errorMessage: null });
+  const { recipeId } = action;
+  return state.merge({ fetching: true, recipeId, result: {}, error: false, errorMessage: null });
 }
 
 // successful sdk initialization
@@ -64,7 +64,7 @@ export const failure = (state, action) => {
   const errorRecoverySuggestion = errorMessage.userInfo.NSLocalizedRecoverySuggestion;
   return state.merge({ 
     fetching: false, error: true, 
-    eventId: null,
+    recipeId: null,
     result: null, title: null, photo: null, ingredients: null, directions: null,
     errorMessage, errorDescription, errorReason, errorRecoverySuggestion });
 }

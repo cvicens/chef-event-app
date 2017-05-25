@@ -15,7 +15,7 @@ function _log(message) {
 }
 
 export function * fetchCurriculum (action) {
-  const { eventId } = action
+  const { chefId } = action
   _log('In CurriculumSaga');
 
    if (__DEV__ && console.tron) {
@@ -25,7 +25,7 @@ export function * fetchCurriculum (action) {
         value: {
           '💃': 'Welcome to the future!',
           action,
-          eventId: eventId
+          chefId: chefId
         }
       });
    }
@@ -35,7 +35,7 @@ export function * fetchCurriculum (action) {
         "path": "/curricula", //only the path part of the url, the host will be added automatically
         "method": "POST", //all other HTTP methods are supported as well. For example, HEAD, DELETE, OPTIONS
         "contentType": "application/json",
-        "data": { eq: { id: "0001" } }, //data to send to the server
+        "data": { eq: { id: chefId } }, //data to send to the server
         "timeout": 25000 // timeout value specified in milliseconds. Default: 60000 (60s)
       }
     const result = yield call(RCTFH.cloud, options);

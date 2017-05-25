@@ -18,7 +18,10 @@ const images = {
   michelinStar: require('../Images/Icons/michelin-star.png'),
   laListe: require('../Images/Icons/la-liste.png'),
   ingredients: require('../Images/ingredients.jpg'),
-  directions: require('../Images/directions.jpg')
+  directions: require('../Images/directions.jpg'),
+  kitchen: require('../../../App/Images/kitchen-blue.png'),
+  pepper: require('../../../App/Images/pepper.png'),
+  presentation: require('../../../App/Images/background-wood.png')
 }
 
 export default images

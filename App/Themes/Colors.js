@@ -1,8 +1,41 @@
-const colors = {
-  background: '#1F0808',
+export const pattern = {
+  darkPink: '#EA526F',
+  lightCarminePink: '#E76B74',
+  catawba: '#773344',
+  pastelPink: '#E3B5A4',
+  alabaster: '#F5E9E2',
+  upMaroon: '#800E13',
+  topaz: '#97393D',
+  oldRose: '#B97B7E',
+};
+
+const __color = {
+  base: pattern.upMaroon,
+  baseTranslucent: 'rgba(128, 14, 19, 0.7)',
+  textOverBase: pattern.alabaster,
+  backgroundOverBase: pattern.alabaster,
+  borderLight: pattern.oldRose,
+  borderDark: pattern.upMaroon,
+}
+
+export const colors = {
+  //background: '#1F0808',
+  background: __color.base,
+  backgroundTranslucent: __color.baseTranslucent,
+  backgroundLight: __color.backgroundOverBase,
+  buttonBackground: __color.backgroundOverBase,
+  buttonText: __color.base,
+  border: __color.base,
+  headerText: __color.textOverBase,
+  sectionTitle: __color.base,
+  sectionHeaderText: __color.base,
+  borderDark: __color.borderDark,
+  borderLight: __color.borderLight,
+
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',
   transparent: 'rgba(0,0,0,0)',
+  translucent: 'rgba(0,0,0,0.7)',
   silver: '#F7F7F7',
   steel: '#CCCCCC',
   error: 'rgba(200, 0, 0, 0.8)',
@@ -20,9 +53,7 @@ const colors = {
   clay: '#FF8A8A',
   drawer: 'rgba(30, 30, 29, 0.95)',
   eggplant: '#251a34',
-  border: '#483F53',
   banner: '#5F3E63',
-  text: '#E0D7E5'
 }
 
 export default colors

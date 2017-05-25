@@ -25,12 +25,15 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   modalPickerText: {
-    padding: 0, 
+    borderRadius: 5,
+    padding: 0,
+    marginTop: 5, 
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 0, 
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)', // 40% opaque
   },
   modalPickerSection: {
     flex: 1,

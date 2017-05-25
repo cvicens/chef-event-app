@@ -5,14 +5,14 @@ import { Metrics, Images } from './DevTheme'
 import FullButton from '../../App/Components/FullButton'
 import RoundedButton from '../../App/Components/RoundedButton'
 
+import BackgroundImage from '../../App/Components/BackgroundImage'
+
 // Redux stuff
 import { connect } from 'react-redux'
 import RecipeActions from '../../App/Redux/RecipeRedux'
 
 // Styles
 import styles from './Styles/RecipeScreenStyles'
-
-
 
 class RecipeScreen extends React.Component {
   constructor (props) {
@@ -23,7 +23,7 @@ class RecipeScreen extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.fetchRecipe(this.props.eventId);
+    this.props.fetchRecipe(this.props.recipeId);
   }
 
   renderIngredients = () => {
@@ -32,7 +32,7 @@ class RecipeScreen extends React.Component {
       return this.props.ingredients.map((ingredient) => {
         i++;
         return (
-          <View key={i} style={{flex: 1, flexDirection: 'row',}}>
+          <View key={i} style={styles.recipeIngredientsRow}>
             <View style={styles.recipeIngredientsColumn}>
               <Text style={[styles.recipeText, {margin: 10}]}>▪︎ {ingredient}</Text>
             </View>
@@ -126,36 +126,36 @@ class RecipeScreen extends React.Component {
         </TouchableOpacity>
         
         <ScrollView style={styles.container} ref='container'>
-          <View style={styles.recipeHeader}>
-            <View style={styles.recipeHeaderContainer}>
-              <Text style={styles.recipeTitleText}>{this.props.title}</Text>            
-            </View>            
+
+          <View style={styles.headerContent}>
+  
+            <BackgroundImage image={Images.presentation} resizeMode='cover'>
+            <Text style={styles.headerSectionText}>
+              {this.props.title}
+            </Text>
+            </BackgroundImage>
+
           </View>
 
-
           <View style={[styles.recipeSection, styles.recipeSectionColumn]}>
-            <View style={styles.backdropContainer}>
-              <Image 
-                style={styles.backdrop} 
-                source={Images.ingredients}>
-                  <View style={styles.backdropView}>
-                    <Text style={styles.headline}>Ingredients</Text>
-                  </View>
-              </Image>
+            
+            <View style={styles.recipeIngredientsRow}>
+            <View style={styles.recipeIngredientsColumn}>
+              <Text style={[styles.recipeSectionTitle, {margin: 10}]}>Ingredients</Text>
+              </View>
             </View>
+
             {this.renderIngredients()}
           </View>
 
           <View style={[styles.recipeSection, styles.recipeSectionColumn]}>
-            <View style={styles.backdropContainer}>
-              <Image 
-                style={styles.backdrop} 
-                source={Images.directions}>
-                  <View style={styles.backdropView}>
-                    <Text style={styles.headline}>Directions</Text>
-                  </View>
-              </Image>
+
+            <View style={styles.recipeIngredientsRow}>
+            <View style={styles.recipeIngredientsColumn}>
+              <Text style={[styles.recipeSectionTitle, {margin: 10}]}>Directions</Text>
+              </View>
             </View>
+
             {this.renderDirections()}
           </View>
           
@@ -168,6 +168,7 @@ class RecipeScreen extends React.Component {
 const mapStateToProps = (state) => {
   return {
     eventId: state.init.eventId,
+    recipeId: state.init.recipeId,
     fetching: state.recipe.fetching,
     error: state.recipe.error,
     result: state.recipe.result,
@@ -185,7 +186,7 @@ const mapStateToProps = (state) => {
 
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = (dispatch) => ({
-  fetchRecipe: (eventId) => dispatch(RecipeActions.fetchRecipeRequest(eventId))
+  fetchRecipe: (recipeId) => dispatch(RecipeActions.fetchRecipeRequest(recipeId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeScreen)

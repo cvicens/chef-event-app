@@ -3,6 +3,8 @@ import { call, put, take, takeEvery } from 'redux-saga/effects'
 import { path } from 'ramda'
 import InitActions from '../Redux/InitRedux'
 
+import { Alert } from 'react-native'
+
 const RCTFH = require('rct-fh');
 
 function _log(message) {
@@ -13,9 +15,9 @@ function _log(message) {
 
 // Our worker Saga: will perform the async increment task
 export function* _init() {
-  console.log('_init 1');
+  _log('_init 1');
   yield delay(1000);
-  console.log('_init 2');
+  _log('_init 2');
   //yield put({ type: 'INCREMENT' });
   //console.log('incrementAsync 3');
 }
@@ -27,20 +29,23 @@ export function * init (action) {
   //yield delay(5000);
   //console.log('after 5 secs');  
   try {
-    console.log('>>> init result 1# ' + JSON.stringify(new Date()) +  ' <<<');
+    _log('>>> init result 1# ' + JSON.stringify(new Date()) +  ' <<<');
     const result = yield call(RCTFH.init);
     //const result = yield call(_init);
-    console.log('>>> init result 2# ' + JSON.stringify(result) + ' ' + JSON.stringify(new Date()) +  ' <<<');
+    _log('>>> init result 2# ' + JSON.stringify(result) + ' ' + JSON.stringify(new Date()) +  ' <<<');
 
     if (result === 'SUCCESS') {
-      console.log('>>> about to yield success' + JSON.stringify(new Date()));
+      _log('>>> about to yield success' + JSON.stringify(new Date()));
+      console.log('👍 init OK');
       yield put(InitActions.initSuccess());
     } else {
-      console.log('about to yield failure' + JSON.stringify(new Date()));
+      _log('about to yield failure' + JSON.stringify(new Date()));
+      console.log('👎 init KO');
       yield put(InitActions.initFailure(result));
     }
   } catch (e) {
-    console.log('about to yield failure (exception)' + JSON.stringify(new Date()));
+    _log('about to yield failure (exception)' + JSON.stringify(new Date()));
+    console.log('👎 init KO');
     yield put(InitActions.initFailure(e));
   }
 }
@@ -78,6 +83,12 @@ export function * findEvent (action) {
     if (result) {
       _log('about to yield success')
       yield put(InitActions.findEventSuccess(result));
+      if (result.length <= 0) {
+        Alert.alert(
+          'No events for today at that location!',
+          'Choose another location...'
+        )
+      }
     } else {
       _log('about to yield failure')
       yield put(InitActions.findEventFailure(result));

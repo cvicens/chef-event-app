@@ -26,7 +26,7 @@ export default class RoundedButton extends React.Component {
   }
 
   render () {
-    console.log ('*******> disabled', this.props.disabled);
+    //console.log ('*******> disabled', this.props.disabled);
     return (
       <TouchableOpacity disabled={this.props.disabled} style={this.props.disabled ? styles.buttonDisabled : styles.buttonEnabled} onPress={this.props.onPress}>
         <Text style={styles.buttonText}>{this.getText()}</Text>
