@@ -92,12 +92,12 @@ class CurriculumScreen extends React.Component {
                 <View style={styles.curriculumHeaderContainer}>
                   <View style={styles.curriculumDistinctionColumn}>
                     <Image source={Images.michelinStar} style={styles.curriculumDistinction} />
-                    <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.michelin} stars</Text>
+                    <Text style={styles.curriculumDistinctionText}>{this.props.distinctions && this.props.distinctions.michelin ? this.props.distinctions.michelin : 0} stars</Text>
                   </View>
                   <Image source={{uri: this.props.photo}} style={styles.curriculumPhoto} />
                   <View style={styles.curriculumDistinctionColumn}>
                     <Image source={Images.laListe} style={styles.curriculumDistinction} />
-                    <Text style={styles.curriculumDistinctionText}>{this.props.distinctions.la_liste} %</Text>
+                    <Text style={styles.curriculumDistinctionText}>{this.props.distinctions && this.props.distinctions.la_liste ? this.props.distinctions.la_liste : 0.0} %</Text>
                   </View>
                 </View>
                 <Text style={styles.curriculumTitleText}>{this.props.nickName}</Text>
