@@ -4744,9 +4744,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-rct-fh@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/rct-fh/-/rct-fh-0.0.16.tgz#ea1b2258907b694189e041b6bbd2150d07b96aa4"
+rct-fh@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/rct-fh/-/rct-fh-0.0.17.tgz#97d6d50441cc14f44b042f1ad3b6b9fb4897df4a"
 
 react-addons-create-fragment@^15.4.0:
   version "15.5.3"
