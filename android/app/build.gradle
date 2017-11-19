@@ -127,6 +127,7 @@ android {
 }
 
 dependencies {
+    compile project(':rct-fh')
     compile project(':react-native-code-push')
     compile project(':react-native-i18n')
     compile project(':react-native-vector-icons')

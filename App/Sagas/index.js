@@ -10,6 +10,7 @@ import { GithubTypes } from '../Redux/GithubRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { OpenScreenTypes } from '../Redux/OpenScreenRedux'
 import { InitTypes } from '../Redux/InitRedux'
+import { EventsTypes } from '../Redux/EventsRedux'
 import { CurriculumTypes } from '../Redux/CurriculumRedux'
 import { RecipeTypes } from '../Redux/RecipeRedux'
 
@@ -20,8 +21,9 @@ import { login } from './LoginSagas'
 import { getUserAvatar } from './GithubSagas'
 import { openScreen } from './OpenScreenSagas'
 import { init, findEvent } from './InitSagas'
+import { fetchEvents } from './EventsSagas'
 import { fetchCurriculum } from './CurriculumSagas'
-import { fetchRecipe} from './RecipeSagas'
+import { fetchRecipe } from './RecipeSagas'
 
 /* ------------- API ------------- */
 
@@ -45,6 +47,8 @@ export default function * root () {
     //takeLatest(InitTypes.UPDATE_COUNTRY, updateCountry),
     //takeLatest(InitTypes.UPDATE_CITY, updateCity),
     //takeLatest(InitTypes.UPDATE_EVENT_ID, updateEventId),
+
+    takeLatest(EventsTypes.FETCH_EVENTS_REQUEST, fetchEvents),
 
     takeLatest(CurriculumTypes.FETCH_REQUEST, fetchCurriculum),
 

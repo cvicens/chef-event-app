@@ -35,6 +35,7 @@ export const INITIAL_STATE = Immutable({
   errorMessage: null,
   date: null,
   showPresentation: false,
+  events: [],
   country: null,
   city: null,
   eventId: null,
@@ -104,7 +105,7 @@ export const findEventSuccess = (state, action) => {
   const endTime = result[0].endTime;
   return state.merge({ 
     fetching: false, error: false, 
-    result, eventId, chefId, recipeId, venueAddress, venueCity, venueProvince, venueCountry, date, startTime, endTime,
+    events: result, eventId, chefId, recipeId, venueAddress, venueCity, venueProvince, venueCountry, date, startTime, endTime,
     errorMessage: null, errorDescription: null, errorReason: null, errorRecoverySuggestion: null });
 }
 

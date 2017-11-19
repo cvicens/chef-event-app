@@ -7,6 +7,7 @@ export const pattern = {
   upMaroon: '#800E13',
   topaz: '#97393D',
   oldRose: '#B97B7E',
+  darkGrey: '#2d2d2d',
 };
 
 const __color = {
@@ -16,6 +17,7 @@ const __color = {
   backgroundOverBase: pattern.alabaster,
   borderLight: pattern.oldRose,
   borderDark: pattern.upMaroon,
+  lightTextBase: pattern.darkGrey,
 }
 
 export const colors = {
@@ -27,6 +29,7 @@ export const colors = {
   buttonText: __color.base,
   border: __color.base,
   headerText: __color.textOverBase,
+  noteText: __color.lightTextBase,
   sectionTitle: __color.base,
   sectionHeaderText: __color.base,
   borderDark: __color.borderDark,

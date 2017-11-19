@@ -7,6 +7,7 @@ import DebugConfig from '../Config/DebugConfig'
 import RoundedButton from '../Components/RoundedButton'
 import BackgroundImage from '../Components/BackgroundImage'
 import PresentationScreen from '../../ignite/Screens/PresentationScreen'
+import ListEventsScreen from '../../ignite/Screens/ListEventsScreen'
 
 import ModalPicker from 'react-native-modal-picker'
 
@@ -201,7 +202,7 @@ class LaunchScreen extends React.Component {
           <Modal
             visible={this.props.ready && this.props.showPresentation && (this.props.eventId !== null && this.props.eventId.length > 0)}
             onRequestClose={this.togglePresentation}>
-            <PresentationScreen screenProps={{ eventId: this.props.eventId, toggle: this.togglePresentation }} />
+            <ListEventsScreen screenProps={{ country: this.props.country, city: this.props.city, eventId: this.props.eventId, toggle: this.togglePresentation }} />
           </Modal>
         </ScrollView>
         </BackgroundImage>

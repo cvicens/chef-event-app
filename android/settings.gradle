@@ -1,4 +1,6 @@
 rootProject.name = 'Chef'
+include ':rct-fh'
+project(':rct-fh').projectDir = new File(rootProject.projectDir, '../node_modules/rct-fh/android')
 include ':react-native-code-push'
 project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
 include ':react-native-i18n'

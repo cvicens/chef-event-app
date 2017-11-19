@@ -84,7 +84,7 @@ class PresentationScreen extends React.Component {
   
             <BackgroundImage image={Images.presentation} resizeMode='cover'>
             <Text style={styles.headerSectionText}>
-              Welcome Julia to this experience, here you'll cook with a real cook and at the same time you'll learn how easy it is to create an App
+              Welcome to this experience Joe and Javier, here you'll cook with a real cook and at the same time you'll learn how easy it is to create an App
             </Text>
             </BackgroundImage>
 

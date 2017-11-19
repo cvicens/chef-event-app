@@ -29,7 +29,7 @@
     "lodash": "4.17.4",
     "querystringify": "1.0.0",
     "ramda": "0.23.0",
-    "rct-fh": "^0.0.14",
+    "rct-fh": "^0.0.20",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-animatable": "^1.1.1",

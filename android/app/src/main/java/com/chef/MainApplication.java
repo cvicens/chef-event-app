@@ -3,6 +3,7 @@ package com.chef;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.digitallyincorrect.RCTFH.RCTFHPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTFHPackage(),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new ReactNativeI18n(),
             new VectorIconsPackage(),

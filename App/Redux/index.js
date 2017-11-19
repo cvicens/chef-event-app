@@ -6,6 +6,7 @@ export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
     init: require('./InitRedux').reducer,
+    events: require('./EventsRedux').reducer,
     curriculum: require('./CurriculumRedux').reducer,
     recipe: require('./RecipeRedux').reducer,
     github: require('./GithubRedux').reducer,
