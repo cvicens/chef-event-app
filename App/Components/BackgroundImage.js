@@ -3,7 +3,7 @@ import { Image, StyleSheet } from 'react-native'
 
 export default class BackgroundImage extends React.Component {
     static propTypes = {
-        image: PropTypes.number,
+        image: PropTypes.any,
         resizeMode: PropTypes.string
     }
 

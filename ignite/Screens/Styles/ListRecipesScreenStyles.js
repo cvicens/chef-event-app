@@ -43,38 +43,38 @@ export default StyleSheet.create({
       alignItems: 'center',
       height: 80
    },
-   eventsSectionHeader: {
+   recipesSectionHeader: {
       flex: 1,
       //flexDirection: 'row',
       borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
       borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 2
    },
-   eventsSectionTitle: {
+   recipesSectionTitle: {
       fontSize: 25,
       paddingTop: 5,
       color: Colors.sectionTitle,
    },
-   eventsTitleText: {
+   recipesTitleText: {
       fontSize: 30,
       paddingTop: 10,
       color: Colors.text
     },
-   eventsSubtitleText: {
+   recipesSubtitleText: {
       fontWeight: 'normal',
       fontStyle: 'italic',
       fontSize: 14,
       color: Colors.text
    },
-   eventsHeaderContainer: {
+   recipesHeaderContainer: {
       flexDirection: 'row',
    },
-   eventsDistinctionText: {
+   recipesDistinctionText: {
       fontWeight: 'normal',
       fontStyle: 'italic',
     fontSize: 14,
       color: Colors.text
    },
-   eventsHeader: {
+   recipesHeader: {
       flex: 1,
       //paddingTop: Metrics.baseMargin,
       paddingTop: 40,
@@ -82,29 +82,29 @@ export default StyleSheet.create({
       backgroundColor: Colors.background,
       alignItems: 'center',
   },
-  eventsSection: {
+  recipesSection: {
       //borderRadius: 10,
       backgroundColor: Colors.backgroundLight,
       //margin: Metrics.section,
       //padding: Metrics.baseMargin
       marginTop: 10
   },
-  eventsSectionColumn: {
+  recipesSectionColumn: {
       padding: 10,
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center'
   },
-  eventItemContainer: {
+  recipeItemContainer: {
       flex: 1,
-      flexDirection: 'column',
+      flexDirection: 'row',
       //alignItems: 'center',
       padding: 10,
       //paddingBottom: 5,
 
   },
-  eventItemTitle: {
+  recipeItemTitle: {
     height: 42,
     width: Metrics.screenWidth - 40,
     textAlign: 'center',
@@ -116,7 +116,7 @@ export default StyleSheet.create({
     color: Colors.headerText,
     backgroundColor: Colors.transparent,
   },
-  eventItemSubtitle: {
+  recipeItemSubtitle: {
     height: 22,
     textAlign: 'center',
     fontFamily: Fonts.base,
@@ -129,13 +129,13 @@ export default StyleSheet.create({
     color: Colors.headerText,
     backgroundColor: Colors.transparent,
   },
-  eventItemFooter: {
+  recipeItemFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 5,
     //paddingBottom: 5,
   },
-  eventItemNote: {
+  recipeItemNote: {
     height: 15,
     textAlign: 'right',
     fontFamily: Fonts.base,
@@ -148,7 +148,7 @@ export default StyleSheet.create({
     color: Colors.noteText,
     backgroundColor: Colors.transparent,
   },
-  eventItemAddress: {
+  recipeItemAddress: {
     height: 15,
     textAlign: 'left',
     fontFamily: Fonts.base,
@@ -161,31 +161,31 @@ export default StyleSheet.create({
     color: Colors.noteText,
     backgroundColor: Colors.transparent,
   },
-  eventsText: {
+  recipesText: {
       ...Fonts.normal,
       color: Colors.sectionHeaderText,
       textAlign: 'justify'
   },
-  eventsPhoto: {
+  recipesPhoto: {
       flex: 1,
       height: 150,
       resizeMode: 'contain',
       alignSelf: 'stretch',
    },
-   eventsPhotoColumn: {
+   recipesPhotoColumn: {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center'
    },
-   eventsDistinctionColumn: {
+   recipesDistinctionColumn: {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       //backgroundColor: Colors.frost,
    },
-   eventsDistinction: {
+   recipesDistinction: {
       resizeMode: 'contain',
       margin: 5,
    },
@@ -214,28 +214,28 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
     color: 'white'
   },
-  eventsDirectionColumnA: {
+  recipesDirectionColumnA: {
     flex: 1, 
     justifyContent: 'center', alignItems: 'center', 
     backgroundColor: Colors.backgroundLigth, 
     borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
     borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   },
-  eventsDirectionColumnB: {
+  recipesDirectionColumnB: {
     flex: 4, 
     backgroundColor: Colors.backgroundLigth,
     borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
     borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   },
-  eventsDirectionsText: {
+  recipesDirectionsText: {
       ...Fonts.normal,
       color: Colors.ro,
       textAlign: 'justify'
   },
-  eventsIngredientsRow: {
+  recipesIngredientsRow: {
     flex: 1, flexDirection: 'row'
   },
-  eventsIngredientsColumn: {
+  recipesIngredientsColumn: {
     flex: 1, 
     backgroundColor: Colors.backgroundLigth,
     borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,

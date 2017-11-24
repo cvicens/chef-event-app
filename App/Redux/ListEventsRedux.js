@@ -13,10 +13,11 @@ const { Types, Creators } = createActions({
   fetchEventsRequest: ['country', 'city'],
   fetchEventsSuccess: ['result'],
   fetchEventsFailure: ['errorMessage'],
-  selectEvent: ['eventId']
+  selectEvent: ['selectedEvent'],
+  toggleModal: null
 })
 
-export const EventsTypes = Types
+export const ListEventsTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -27,7 +28,8 @@ export const INITIAL_STATE = Immutable({
   result: null,
   country: null,
   city: null,
-  eventId: null,
+  selectedEvent: null,
+  showModal: null,
   errorMessage: null,
   errorReason: null,
   errorDescription: null,
@@ -40,24 +42,28 @@ export const INITIAL_STATE = Immutable({
 export const request = (state, action) => {
   _log('At EventsRedux: request');
   const { country, city } = action;
-  return state.merge({ fetching: true, result: [], eventId: null, error: false, errorMessage: null });
+  _log('At ListEventsRedux: request action ' + action + ' state' + state);
+  return state.merge({ 
+    fetching: true, result: [], selectedEvent: null, showModal: null, 
+    errorMessage: null, errorDescription: null, errorReason: null, errorRecoverySuggestion: null });
 }
 
 // success to fetch events
 export const success = (state, action) => {
-  _log('At EventsRedux: success');
   const { result } = action;
+  _log('At ListEventsRedux: success action ' + action + ' state' + state);
   return state.merge({ 
-    fetching: false, error: false, 
+    fetching: false,
     result,
-    eventId: null,
+    selectedEvent: null,
+    showModal: null,
     errorMessage: null, errorDescription: null, errorReason: null, errorRecoverySuggestion: null })
 }
 
 // failed to fetch events
 export const failure = (state, action) => {
-  _log('At EventsRedux: failure');
   const { errorMessage } = action;
+  _log('At ListEventsRedux: failure action ' + action + ' state' + state);
   const errorReason = errorMessage.userInfo.NSLocalizedFailureReason;
   const errorDescription = errorMessage.userInfo.NSLocalizedDescription;
   const errorRecoverySuggestion = errorMessage.userInfo.NSLocalizedRecoverySuggestion;
@@ -66,15 +72,22 @@ export const failure = (state, action) => {
     contry: null,
     city: null,
     result: null,
-    eventId: null,
+    selectedEvent: null,
+    showModal: null,
     errorMessage, errorDescription, errorReason, errorRecoverySuggestion });
 }
 
 // select event
 export const selectEvent = (state, action) => {
-  const { eventId } = action;
-  _log('At EventsRedux: selectEvent', eventId);
-  return state.merge({ eventId });
+  const { selectedEvent } = action;
+  _log('At ListEventsRedux: selectEvent action ' + action + ' state' + state);
+  return state.merge({ selectedEvent, showModal: true });
+}
+
+// toggle Modal
+export const toggleModal = (state, action) => {
+  _log('At ListEventsRedux: toggleModal action ' + action + ' state' + state);
+  return state.merge({ showModal: !state.showModal });
 }
 
 /* ------------- Hookup Reducers To Types ------------- */
@@ -84,4 +97,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_EVENTS_SUCCESS]: success,
   [Types.FETCH_EVENTS_FAILURE]: failure,
   [Types.SELECT_EVENT]: selectEvent,
+  [Types.TOGGLE_MODAL]: toggleModal,
 })

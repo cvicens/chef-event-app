@@ -1,7 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import { path } from 'ramda'
-import EventsActions from '../Redux/EventsRedux'
-import InitActions from '../Redux/InitRedux'
+import ListRecipesActions from '../Redux/ListRecipesRedux'
 
 const RCTFH = require('rct-fh');
 
@@ -14,28 +13,30 @@ function _log(message) {
   }
 }
 
-export function * fetchEvents (action) {
-  const { country, city } = action
-  _log('In EventsSaga');
-
-  const countryCode = country.code || country;
+export function * fetchRecipes (action) {
+  const { recipeIds } = action
+  _log('In ListRecipesSagas');
 
    if (__DEV__ && console.tron) {
       console.tron.display({
-      name: '🔥 In EventsSaga ### 🔥',
-        preview: 'fetchEvents',
+      name: '🔥 In ListRecipesSagas ### 🔥',
+        preview: 'fetchRecipes',
         value: {
           action,
-          contry: country,
-          city: city
+          recipeIds: recipeIds
         }
       });
    }
 
   try {
     var options = {
-        "path": "/events/" + countryCode.toUpperCase() + '/' + city.toUpperCase(), //only the path part of the url, the host will be added automatically
-        "method": "GET", //all other HTTP methods are supported as well. For example, HEAD, DELETE, OPTIONS
+        "path": "/recipes", //only the path part of the url, the host will be added automatically
+        "method": "POST", //all other HTTP methods are supported as well. For example, HEAD, DELETE, OPTIONS
+        "data": {
+          "in": {
+            "id": recipeIds
+          }
+        },
         "contentType": "application/json",
         "timeout": 25000 // timeout value specified in milliseconds. Default: 60000 (60s)
       }
@@ -44,13 +45,13 @@ export function * fetchEvents (action) {
 
     if (result) {
       _log('about to yield success')
-      yield put(EventsActions.fetchEventsSuccess(result));
+      yield put(ListRecipesActions.fetchRecipesSuccess(result));
     } else {
       _log('about to yield failure')
-      yield put(EventsActions.fetchEventsFailure(result));
+      yield put(ListRecipesActions.fetchRecipesFailure(result));
     }
   } catch (e) {
     _log('about to yield failure (exception)')
-    yield put(EventsActions.fetchEventsFailure(e));
+    yield put(ListRecipesActions.fetchRecipesFailure(e));
   }
 }

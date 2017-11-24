@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { StyleSheet, ScrollView, Text, Image, View, TouchableOpacity, FlatList, ListItem, Button } from 'react-native'
+import { Platform, StatusBar, StyleSheet, ScrollView, Modal, Text, Image, View, TouchableOpacity, FlatList, ListItem, Button } from 'react-native'
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
 
@@ -8,104 +8,44 @@ import BackgroundImage from '../../App/Components/BackgroundImage'
 // Navigation
 import { StackNavigator } from 'react-navigation'
 
-import {
-  Card,
-  CardTitle,
-  CardImage,
-  CardContent,
-  CardAction
-} from '../../App/Components/card-view'
-
 // Screens
-import APITestingScreen from './APITestingScreen'
-import ComponentExamplesScreen from './ComponentExamplesScreen'
-import DeviceInfoScreen from './DeviceInfoScreen'
-import PluginExamplesScreen from './PluginExamplesScreen'
-import ThemeScreen from './ThemeScreen'
-import FaqScreen from './FaqScreen'
-
-import CurriculumScreen from './CurriculumScreen'
-import RecipeScreen from './RecipeScreen'
+import ListRecipesScreen from './ListRecipesScreen'
 
 // Redux stuff
 import { connect } from 'react-redux'
-import EventsActions from '../../App/Redux/EventsRedux'
+import ListEventsActions from '../../App/Redux/ListEventsRedux'
+
+// StatusBar
+const CustomStatusBar = ({backgroundColor, ...props}) => (
+  <View style={[styles.statusBar, { backgroundColor }]}>
+    <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+  </View>
+);
 
 // Styles
+import { Colors } from '../../App/Themes'
 import styles from './Styles/ListEventsScreenStyles'
 
 class EventListItem extends React.PureComponent {
-  _styles = StyleSheet.create({
-    backgroundImage: {
-        //flex: 1,
-        width: 200,
-        height: 150
-    }
-  })
-
-  _onPress = () => {
-    this.props.onPressItem(this.props.key);
-  };
-
-  renderC() {
-    const __style = [ this._styles.backgroundImage,
-      { resizeMode: this.props.resizeMode || 'cover' }
-    ]
-    return (
-      <Card>
-      <CardImage>
-        <Image onPress={this._onPress}
-          style={{flex: 1,
-            width: null,
-            height: null, resizeMode: 'cover'}}
-          source={Images.presentation}>
-          <Text style={[styles.title, {alignSelf: 'center'}]}>{this.props.title}</Text>
-          <Text style={[styles.title, {alignSelf: 'center'}]}>{this.props.subtitle}</Text>
-        </Image>
-      </CardImage>
-      </Card>
-    )
-  }
-
   render () {
     return (
       <View style={styles.eventItemContainer}>
-      <BackgroundImage  image={this.props.image} resizeMode='cover'>
+      <BackgroundImage  
+      image={{uri: this.props.image, scale: 3}} 
+      resizeMode='cover'>
       <Text style={styles.eventItemTitle}>{this.props.title}</Text>
       <Text style={styles.eventItemSubtitle}>{this.props.subtitle}</Text>
       </BackgroundImage>
       <View style={styles.eventItemFooter}>
-      <Text style={styles.eventItemAddress}>{this.props.subtitle}</Text>
+      <Text style={styles.eventItemAddress}>{this.props.location}</Text>
       <Text style={styles.eventItemNote}>{this.props.note}</Text>
       </View>
       </View>
     )
   }
-
-  renderTest () {
-    const __style = [ this._styles.backgroundImage,
-      { resizeMode: this.props.resizeMode || 'cover' }
-    ]
-    console.log('this.props', this.props);
-    return (
-      <View style={styles.eventItemContainer}>
-      <Image source={this.props.image} style={__style}>
-        <Text style={styles.eventItemTitle}>{this.props.title}</Text>
-        <Text style={styles.eventItemSubtitle}>{this.props.subtitle}</Text>
-      </Image>
-      </View>
-    )
-  }
-
-
-  render2() {
-    return (
-      <Text style={styles.eventsTitleText} onPress={this._onPress}>{this.props.title + ' ' + this.props.subtitle}</Text>
-    )
-  }
 }
 
-class _ListEventsScreen extends React.PureComponent {
+class ListEventsScreen extends React.PureComponent {
   state = {selected: {}}; 
 
   static propTypes = {
@@ -123,8 +63,6 @@ class _ListEventsScreen extends React.PureComponent {
     } else {
       this.props.fetchEvents({ key: 0, label: '🇪🇸 Spain', isocode: 'es', code: 'SPAIN' }, 'Madrid');
     }
-    
-    
   }
 
   openRecipe = () => {
@@ -133,12 +71,9 @@ class _ListEventsScreen extends React.PureComponent {
 
   _keyExtractor = (item, index) => item.id; 
   
-  _onPressItem = (id) => {  // updater functions are preferred for transactional updates
-    this.setState((state) => {  // copy the map rather than modifying state.
-      const selected = new Map(state.selected); 
-      selected.set(id, !selected.get(id)); // toggle
-      return { selected }; 
-    }); 
+  _onPressItem = (item) => {  // updater functions are preferred for transactional updates
+    console.log('_onPressItem', item);
+    this.props.selectEvent(item);
   };
 
   renderEvents = () => {
@@ -150,14 +85,19 @@ class _ListEventsScreen extends React.PureComponent {
           keyExtractor={(item, index) => index}
           renderItem={({ item }) => {
             console.log('item', item);
+            console.log('this._onPressItem', this._onPressItem);
             return (
-
+              <TouchableOpacity onPress={() => this._onPressItem(item)}>
               <EventListItem 
-                image={Images.presentation} 
+                //image={Images.presentation} 
+                image={item.image} 
                 title={item.title} 
-                subtitle={item.city + ', ' + item.address} 
+                subtitle={item.subtitle} 
+                location={item.address + ', ' + item.city}
                 note={item.startTime + ' - ' + item.endTime}
-                onPressItem={this._onPressItem}/>
+                //onPressItem={this._onPressItem}
+                />
+              </TouchableOpacity>
           )}}
         />
       )
@@ -167,24 +107,17 @@ class _ListEventsScreen extends React.PureComponent {
     )  
   }
 
-  _renderItem = ({item}) => ( 
-      <EventListItem key={item.id} onPressItem={this._onPressItem} selected={!!this.state.selected.get(item.id)} title={item.title} /> 
-  );
-
-  _renderTitle (title) {
-    return (
-      <View style={{flex: 1, alignItems: 'center', marginTop: 20}}>
-        <Text style={{fontSize: 20}}>{title}</Text>
-      </View>
-    )
-  }
-
   render () {
-    //const __onPress = this.props.screenProps.toggle;
-    const __onPress = '';
+    const __onPress = this.props.screenProps.toggle;
+    //const __onPress = '';
     return (
       <View style={styles.mainContainer}>
-        
+
+        <CustomStatusBar backgroundColor={Colors.background} barStyle="light-content" />
+        <View style={styles.appBar}>
+        <Text style={styles.appBarText}>{'Event list'}</Text>
+        </View>
+
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',
           paddingTop: 30,
@@ -198,10 +131,16 @@ class _ListEventsScreen extends React.PureComponent {
 
           {this.renderEvents()}
           
+          <Modal
+            visible={this.props != null && this.props.showModal != null && this.props.selectedEvent != null}
+            onRequestClose={this.toggleModal}>
+            <ListRecipesScreen screenProps={{ selectedEvent: this.props.selectedEvent, toggle: this.toggleModal }} />
+          </Modal>
         </ScrollView>
         
       </View>
     )
+    //            
   }
 }
 
@@ -209,33 +148,20 @@ const mapStateToProps = (state) => {
   return {
     country: state.events.country,
     city: state.events.city,
-    result: state.events.result
+    result: state.events.result,
+    showModal: state.events.showModal,
+    selectedEvent: state.events.selectedEvent
   }
 }
 
 // wraps dispatch to create nicer functions to call within our component
 const mapDispatchToProps = (dispatch) => ({
-  fetchEvents: (country, city) => dispatch(EventsActions.fetchEventsRequest(country, city))
+  fetchEvents: (country, city) => dispatch(ListEventsActions.fetchEventsRequest(country, city)),
+  selectEvent: (selectedEvent) => {
+    console.log('selectEvent', selectedEvent);
+    dispatch(ListEventsActions.selectEvent(selectedEvent));
+  },
+  toggleModal: () => dispatch(ListEventsActions.toggleModal()),
 })
 
-const ListEventsScreen = connect(mapStateToProps, mapDispatchToProps)(_ListEventsScreen)
-
-export default StackNavigator({
-  ListEventsScreen: {screen: ListEventsScreen},
-  CurriculumScreen: {screen: CurriculumScreen},
-  RecipeScreen: {screen: RecipeScreen}
-}, {
-  initialRouteName: 'ListEventsScreen',
-  headerMode: 'none',
-  // Keeping this here for future when we can make
-  navigationOptions: {
-    header: {
-      left: (
-        <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{marginHorizontal: 10}} /></TouchableOpacity>
-      ),
-      style: {
-        backgroundColor: '#3e243f'
-      }
-    }
-  }
-})
+export default connect(mapStateToProps, mapDispatchToProps)(ListEventsScreen)
