@@ -71,7 +71,7 @@ class LaunchScreen extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.init();
+    //this.props.init();
     console.log('✨ LaunchScreen props', this.props);
   }
 
@@ -101,10 +101,6 @@ class LaunchScreen extends React.Component {
           this.props.findEventRequest(nextProps.country, nextProps.city);
         }
       }
-  }
-
-  onInit = () => {
-    //this.props.init();
   }
 
   togglePresentation = () => {

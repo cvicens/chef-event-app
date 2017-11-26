@@ -10,11 +10,43 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.transparent
   },
+  mainContainerHeader: {
+    height: 150,
+    //flex: 1,
+    flexDirection: 'row',
+    //alignItems: 'center',
+    //padding: 10,
+    //marginHorizontal: 10,
+    //paddingBottom: 10,
+    borderBottomColor: Colors.borderLightGrey, 
+    borderBottomWidth: StyleSheet.hairlineWidth
+  },
   container: {
-      flex: 1,
-      //flexDirection: 'column',
-      //paddingTop: Metrics.baseMargin,
-      backgroundColor: Colors.backgroundLight
+    flex: 1,
+    //flexDirection: 'column',
+    //paddingTop: Metrics.baseMargin,
+    backgroundColor: Colors.backgroundLighter
+  },
+  banner: {
+    height: 90,
+    backgroundColor: "rgba(255, 255, 255, .98)",
+    borderWidth: 1,
+    borderColor: Colors.borderLightGrey,
+    marginHorizontal: 30,
+    marginTop: -45,
+    alignItems: 'center'
+  },
+  bannerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.black,
+    marginTop: 15,
+  },
+  bannerSubtitle: {
+    fontSize: 15,
+    fontWeight: 'normal',
+    color: Colors.charcoal,
+    marginTop: 5,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,
@@ -97,23 +129,53 @@ export default StyleSheet.create({
       alignItems: 'center'
   },
   recipeItemContainer: {
-      flex: 1,
+      height: 100,
+      //flex: 1,
       flexDirection: 'row',
       //alignItems: 'center',
-      padding: 10,
-      //paddingBottom: 5,
+      //padding: 10,
+      marginHorizontal: 10,
+      paddingVertical: 10,
+      borderBottomColor: Colors.borderLightGrey, 
+      borderBottomWidth: StyleSheet.hairlineWidth
 
   },
+  recipeItemContainerText: {
+    flex: 3,
+    flexDirection: 'column',
+    //alignItems: 'center',
+    marginRight: 5,
+    //paddingBottom: 5,
+  },
+  recipeItemContainerImage: {
+    flex: 1,
+    flexDirection: 'column',
+    //alignItems: 'center',
+    //padding: 10,
+    //paddingBottom: 5,
+  },
   recipeItemTitle: {
-    height: 42,
-    width: Metrics.screenWidth - 40,
-    textAlign: 'center',
+    //height: 42,
+    //width: Metrics.screenWidth - 40,
+    textAlign: 'left',
     fontFamily: Fonts.base,
-    fontSize: 25,
+    fontSize: 15,
     fontWeight: 'bold',
-    marginHorizontal: Metrics.baseMargin,
-    marginTop: 55,
-    color: Colors.headerText,
+    //marginHorizontal: Metrics.baseMargin,
+    //marginTop: 55,
+    color: Colors.black,
+    backgroundColor: Colors.transparent,
+  },
+  recipeItemDescription: {
+    //height: 42,
+    //width: Metrics.screenWidth - 40,
+    textAlign: 'left',
+    fontFamily: Fonts.base,
+    fontSize: 13,
+    fontWeight: 'normal',
+    //marginHorizontal: Metrics.baseMargin,
+    marginTop: 5,
+    color: Colors.charcoal,
     backgroundColor: Colors.transparent,
   },
   recipeItemSubtitle: {

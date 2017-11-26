@@ -8,6 +8,8 @@ export const pattern = {
   topaz: '#97393D',
   oldRose: '#B97B7E',
   darkGrey: '#2d2d2d',
+  lightGrey: '#f2f2f2',
+  pearl: '#fffdfd',
 };
 
 const __color = {
@@ -15,7 +17,9 @@ const __color = {
   baseTranslucent: 'rgba(128, 14, 19, 0.7)',
   textOverBase: pattern.alabaster,
   backgroundOverBase: pattern.alabaster,
+  backgroundOverBaseLighter: pattern.pearl,
   borderLight: pattern.oldRose,
+  borderLightGrey: pattern.lightGrey,
   borderDark: pattern.upMaroon,
   lightTextBase: pattern.darkGrey,
 }
@@ -25,6 +29,7 @@ export const colors = {
   background: __color.base,
   backgroundTranslucent: __color.baseTranslucent,
   backgroundLight: __color.backgroundOverBase,
+  backgroundLighter: __color.backgroundOverBaseLighter,
   buttonBackground: __color.backgroundOverBase,
   buttonText: __color.base,
   border: __color.base,
@@ -34,6 +39,7 @@ export const colors = {
   sectionHeaderText: __color.base,
   borderDark: __color.borderDark,
   borderLight: __color.borderLight,
+  borderLightGrey: __color.borderLightGrey,
 
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',

@@ -85,7 +85,7 @@ export const selectRecipe = (state, action) => {
 // toggle Modal
 export const toggleModal = (state, action) => {
   _log('At ListRecipesRedux: toggleModal action ' + action + ' state' + state);
-  return state.merge({ showModal: !state.showModal });
+  return state.merge({ showModal: !state.showModal, selectedRecipe: null });
 }
 
 /* ------------- Hookup Reducers To Types ------------- */

@@ -11,6 +11,7 @@ const colors = {
   windowTint: 'rgba(0, 0, 0, 0.4)',
   panther: '#161616',
   charcoal: '#595959',
+  black: '#000000',
   snow: 'white',
   ember: 'rgba(164, 0, 48, 0.5)',
   fire: '#ff3832',

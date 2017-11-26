@@ -30,16 +30,16 @@ class EventListItem extends React.PureComponent {
   render () {
     return (
       <View style={styles.eventItemContainer}>
-      <BackgroundImage  
-      image={{uri: this.props.image, scale: 3}} 
-      resizeMode='cover'>
-      <Text style={styles.eventItemTitle}>{this.props.title}</Text>
-      <Text style={styles.eventItemSubtitle}>{this.props.subtitle}</Text>
-      </BackgroundImage>
-      <View style={styles.eventItemFooter}>
-      <Text style={styles.eventItemAddress}>{this.props.location}</Text>
-      <Text style={styles.eventItemNote}>{this.props.note}</Text>
-      </View>
+        <BackgroundImage  
+        image={{uri: this.props.image, scale: 3}} 
+        resizeMode='cover'>
+          <Text style={styles.eventItemTitle}>{this.props.title}</Text>
+          <Text style={styles.eventItemSubtitle}>{this.props.subtitle}</Text>
+        </BackgroundImage>
+        <View style={styles.eventItemFooter}>
+        <Text style={styles.eventItemAddress}>{this.props.location}</Text>
+        <Text style={styles.eventItemNote}>{this.props.note}</Text>
+        </View>
       </View>
     )
   }
@@ -132,9 +132,9 @@ class ListEventsScreen extends React.PureComponent {
           {this.renderEvents()}
           
           <Modal
-            visible={this.props != null && this.props.showModal != null && this.props.selectedEvent != null}
-            onRequestClose={this.toggleModal}>
-            <ListRecipesScreen screenProps={{ selectedEvent: this.props.selectedEvent, toggle: this.toggleModal }} />
+            visible={this.props != null && this.props.showModal && this.props.selectedEvent != null}
+            onRequestClose={this.props.toggleModal}>
+            <ListRecipesScreen screenProps={{ selectedEvent: this.props.selectedEvent, toggle: this.props.toggleModal }} />
           </Modal>
         </ScrollView>
         
@@ -149,8 +149,9 @@ const mapStateToProps = (state) => {
     country: state.events.country,
     city: state.events.city,
     result: state.events.result,
+    selectedEvent: state.events.selectedEvent,
+
     showModal: state.events.showModal,
-    selectedEvent: state.events.selectedEvent
   }
 }
 

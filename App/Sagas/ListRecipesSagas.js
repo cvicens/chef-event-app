@@ -17,6 +17,11 @@ export function * fetchRecipes (action) {
   const { recipeIds } = action
   _log('In ListRecipesSagas');
 
+  //var _recipeIds = recipeIds;
+  //if (recipeIds.size <= 0) {
+  //  _recipeIds = ['0001', '0002'];
+  //}
+
    if (__DEV__ && console.tron) {
       console.tron.display({
       name: '🔥 In ListRecipesSagas ### 🔥',
@@ -45,7 +50,13 @@ export function * fetchRecipes (action) {
 
     if (result) {
       _log('about to yield success')
-      yield put(ListRecipesActions.fetchRecipesSuccess(result));
+      var sortedResult = [];
+      for(var i = 0; i < recipeIds.length; i++) {
+        sortedResult.push(result.find((element) => {
+          return element.id === recipeIds[i];
+        }));
+      }
+      yield put(ListRecipesActions.fetchRecipesSuccess(sortedResult));
     } else {
       _log('about to yield failure')
       yield put(ListRecipesActions.fetchRecipesFailure(result));

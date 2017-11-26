@@ -44,7 +44,10 @@ export const request = (state, action) => {
   const { country, city } = action;
   _log('At ListEventsRedux: request action ' + action + ' state' + state);
   return state.merge({ 
-    fetching: true, result: [], selectedEvent: null, showModal: null, 
+    fetching: true, 
+    result: [], 
+    selectedEvent: null, 
+    showModal: null, 
     errorMessage: null, errorDescription: null, errorReason: null, errorRecoverySuggestion: null });
 }
 
@@ -87,7 +90,7 @@ export const selectEvent = (state, action) => {
 // toggle Modal
 export const toggleModal = (state, action) => {
   _log('At ListEventsRedux: toggleModal action ' + action + ' state' + state);
-  return state.merge({ showModal: !state.showModal });
+  return state.merge({ showModal: !state.showModal, selectedEvent: null });
 }
 
 /* ------------- Hookup Reducers To Types ------------- */

@@ -1,6 +1,8 @@
-import {Colors} from '../../Themes/'
+import { Colors, ApplicationStyles } from '../../Themes/'
+//import { Metrics, ApplicationStyles, Colors } from '../../Themes/'
 
 export default {
+  ...ApplicationStyles.screen,
   container: {
     flex: 1
   },

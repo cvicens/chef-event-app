@@ -26,21 +26,29 @@ const CustomStatusBar = ({backgroundColor, ...props}) => (
 import { Colors } from '../../App/Themes'
 import styles from './Styles/ListRecipesScreenStyles'
 
+
+const _DEBUG = false;
+
 class RecipeListItem extends React.PureComponent {
   render () {
     return (
       <View style={styles.recipeItemContainer}>
-      <BackgroundImage  
-      image={{uri: this.props.image, scale: 3}} 
-      resizeMode='cover'>
-      <Text style={styles.recipeItemTitle}>{this.props.title}</Text>
-      <Text style={styles.recipeItemSubtitle}>{this.props.subtitle}</Text>
-      </BackgroundImage>
-      <View style={styles.recipeItemFooter}>
-        <Text style={styles.recipeItemAddress}>{this.props.location}</Text>
-        <Text style={styles.recipeItemNote}>{this.props.note}</Text>
+
+        <View style={styles.recipeItemContainerText}>
+          <Text style={styles.recipeItemTitle}>{this.props.title}</Text>
+          <Text style={styles.recipeItemDescription}>{this.props.description}</Text>
+        </View>
+
+        <View style={styles.recipeItemContainerImage}>
+          <Image 
+            source={{uri: this.props.image, scale: 3}} 
+            style={ {flex: 1, width: null, height: null, resizeMode: 'cover'} } />
+
+        </View>
+
       </View>
-      </View>
+
+
     )
   }
 }
@@ -55,10 +63,16 @@ class ListRecipesScreen extends React.PureComponent {
   componentWillMount = () => {
     console.log('✨ ListRecipesScreen props', this.props);
 
+    if (_DEBUG) {
+      this.props.fetchRecipes(['0001', '0002']);
+      return;
+    }
+
     if (this.props && this.props.screenProps) {
-      this.props.fetchRecipes(this.props.screenProps.selectedEvent.recipes);
-      if (this.props.screenProps.event === null) {
+      if (this.props.screenProps.selectedEvent === null) {
         this.props.screenProps.toggle();
+      } else {
+      this.props.fetchRecipes(this.props.screenProps.selectedEvent.recipes);
       }
     }
   }
@@ -101,17 +115,34 @@ class ListRecipesScreen extends React.PureComponent {
     )  
   }
 
-  render () {
-    const __onPress = this.props.screenProps.toggle;
-    console.log('At recipesScreen __onPress', __onPress);
-    //const __onPress = '';
-    return (
-      <View style={styles.mainContainer}>
 
-        <CustomStatusBar backgroundColor={Colors.background} barStyle="light-content" />
+  /*
+  <CustomStatusBar backgroundColor={Colors.background} barStyle="light-content" />
         <View style={styles.appBar}>
         <Text style={styles.appBarText}>{'Recipes list'}</Text>
         </View>
+  */
+
+  render () {
+    var __onPress = null;
+    if (_DEBUG) {
+      __onPress = '';
+    } else {
+      __onPress = this.props.screenProps.toggle;
+    }
+
+    console.log('At recipesScreen __onPress', __onPress);
+    //const __onPress = '';
+
+    const selectedEvent = (this.props.screenProps == null || this.props.screenProps.selectedEvent == null) ? 
+       require('./sampleEvent.json') : this.props.screenProps.selectedEvent;
+
+    console.log('selectedEvent', selectedEvent);
+
+    return (
+      <View style={styles.mainContainer}>
+
+        
 
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',
@@ -123,6 +154,19 @@ class ListRecipesScreen extends React.PureComponent {
         </TouchableOpacity>
 
         <ScrollView style={styles.container} ref='container'>
+
+          <View style={styles.mainContainerHeader}>
+            <Image 
+              source={{uri: selectedEvent.image}} 
+              style={ {flex: 1, width: null, height: null, resizeMode: 'cover'} } />
+
+          </View>
+
+          <View style={styles.banner}>
+            <Text style={styles.bannerTitle}>{selectedEvent.title}</Text>
+            <Text style={styles.bannerSubtitle}>{selectedEvent.subtitle}</Text>
+          </View>
+
 
           {this.renderRecipes()}
           
