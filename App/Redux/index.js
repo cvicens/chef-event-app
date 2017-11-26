@@ -8,6 +8,7 @@ export default () => {
     init: require('./InitRedux').reducer,
     events: require('./ListEventsRedux').reducer,
     recipes: require('./ListRecipesRedux').reducer,
+    winepairing: require('./WinePairingRedux').reducer,
     curriculum: require('./CurriculumRedux').reducer,
     recipe: require('./RecipeRedux').reducer,
     github: require('./GithubRedux').reducer,

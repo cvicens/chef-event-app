@@ -12,6 +12,7 @@ import { OpenScreenTypes } from '../Redux/OpenScreenRedux'
 import { InitTypes } from '../Redux/InitRedux'
 import { ListEventsTypes } from '../Redux/ListEventsRedux'
 import { ListRecipesTypes } from '../Redux/ListRecipesRedux'
+import { WinePairingTypes } from '../Redux/WinePairingRedux'
 import { CurriculumTypes } from '../Redux/CurriculumRedux'
 import { RecipeTypes } from '../Redux/RecipeRedux'
 
@@ -24,6 +25,7 @@ import { openScreen } from './OpenScreenSagas'
 import { init, findEvent } from './InitSagas'
 import { fetchEvents } from './EventsSagas'
 import { fetchRecipes } from './ListRecipesSagas'
+import { fetchWinePairing } from './WinePairingSagas'
 import { fetchCurriculum } from './CurriculumSagas'
 import { fetchRecipe } from './RecipeSagas'
 
@@ -53,6 +55,8 @@ export default function * root () {
     takeLatest(ListEventsTypes.FETCH_EVENTS_REQUEST, fetchEvents),
 
     takeLatest(ListRecipesTypes.FETCH_RECIPES_REQUEST, fetchRecipes),
+
+    takeLatest(WinePairingTypes.FETCH_WINE_PAIRING_REQUEST, fetchWinePairing),
 
     takeLatest(CurriculumTypes.FETCH_REQUEST, fetchCurriculum),
 
