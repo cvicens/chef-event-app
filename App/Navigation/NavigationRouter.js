@@ -10,6 +10,7 @@ import styles from './Styles/NavigationContainerStyles'
 import LaunchScreen from '../Containers/LaunchScreen'
 import ListEventsScreen from '../../ignite/Screens/ListEventsScreen'
 import ListRecipesScreen from '../../ignite/Screens/ListRecipesScreen'
+import WinePairingScreen from '../../ignite/Screens/WinePairingScreen'
 
 // Redux stuff
 import { connect } from 'react-redux'

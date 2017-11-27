@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Platform, StatusBar, StyleSheet, ScrollView, Text, Image, View, TouchableOpacity, FlatList, ListItem, Button } from 'react-native'
+import { Platform, StatusBar, StyleSheet, ScrollView, Text, Image, View, TouchableOpacity, FlatList, ListItem, Button, Modal } from 'react-native'
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
 
@@ -9,6 +9,7 @@ import BackgroundImage from '../../App/Components/BackgroundImage'
 import { StackNavigator } from 'react-navigation'
 
 // Screens
+import WinePairingScreen from './WinePairingScreen'
 import RecipeScreen from './RecipeScreen'
 
 // Redux stuff
@@ -69,10 +70,11 @@ class ListRecipesScreen extends React.PureComponent {
     }
 
     if (this.props && this.props.screenProps) {
-      if (this.props.screenProps.selectedEvent === null) {
-        this.props.screenProps.toggle();
+      if (this.props.screenProps.selectedEvent == null) {
+        // No data... so we need to hide this screen by toggling the Modal on ListEventsScreen
+        this.props.screenProps.toggle != null ? this.props.screenProps.toggle() : console.log('ListRecipesScreen, cannot mount properly!');
       } else {
-      this.props.fetchRecipes(this.props.screenProps.selectedEvent.recipes);
+        this.props.fetchRecipes(this.props.screenProps.selectedEvent.recipes);
       }
     }
   }
@@ -123,6 +125,10 @@ class ListRecipesScreen extends React.PureComponent {
         </View>
   */
 
+  toggleModal = () => {
+    this.props.toggleModal();
+  }
+
   render () {
     var __onPress = null;
     if (_DEBUG) {
@@ -141,8 +147,6 @@ class ListRecipesScreen extends React.PureComponent {
 
     return (
       <View style={styles.mainContainer}>
-
-        
 
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',
@@ -172,16 +176,36 @@ class ListRecipesScreen extends React.PureComponent {
           
         </ScrollView>
         
+        <Modal
+          presentationStyle={'pageSheet'}
+          visible={this.props != null && this.props.showModal && this.props.selectedRecipe != null}
+          //onRequestClose={this.toggleModal}
+          >
+
+          <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.toggleModal }} />
+
+        </Modal>
+       
       </View>
     )
   }
 }
 
+/*
+  
+<Modal
+          visible={this.props != null && this.props.showModal && this.props.selectedRecipe != null}
+          onRequestClose={this.props.toggleModal}>
+          <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.props.toggleModal }} />
+        </Modal>
+*/
+
 const mapStateToProps = (state) => {
   return {
     recipeIds: state.recipes.recipeIds,
     result: state.recipes.result,
-    selectedRecipe: state.recipes.selectedRecipe
+    selectedRecipe: state.recipes.selectedRecipe,
+    showModal: state.recipes.showModal
   }
 }
 
@@ -189,7 +213,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchRecipes: (event) => dispatch(ListRecipesActions.fetchRecipesRequest(event)),
   selectRecipe: (selectedRecipe) => dispatch(ListRecipesActions.selectRecipe(selectedRecipe)),
-  toggleModal: () => dispatch(ListRecipesActions.toggleModal()),
+  toggleModal: () => dispatch(ListRecipesActions.toggleModalRecipes()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListRecipesScreen)

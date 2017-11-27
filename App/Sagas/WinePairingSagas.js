@@ -13,6 +13,12 @@ function _log(message) {
   }
 }
 
+function fakeWirePairing () {
+  return new Promise((resolve, reject) => {
+    resolve (require('../../ignite/Screens/sampleWinePairing.json'));
+  });
+}
+
 export function * fetchWinePairing (action) {
   const { foodType } = action
   _log('In WinePairingSagas');
@@ -30,12 +36,13 @@ export function * fetchWinePairing (action) {
 
   try {
     var options = {
-        "path": "/winepairing?foodType=" + foodType,
+        "path": "/service/winepairing?foodType=" + foodType,
         "method": "GET",
         "contentType": "application/json",
         "timeout": 25000 // timeout value specified in milliseconds. Default: 60000 (60s)
       }
-    const result = yield call(RCTFH.cloud, options);
+    //const result = yield call(RCTFH.cloud, options);
+    const result = yield call(fakeWirePairing);
     _log('fetch result', result);
 
     if (result) {

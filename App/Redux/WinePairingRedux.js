@@ -13,7 +13,7 @@ const { Types, Creators } = createActions({
   fetchWinePairingRequest: ['foodType'],
   fetchWinePairingSuccess: ['result'],
   fetchWinePairingFailure: ['errorMessage'],
-  toggleModal: null
+  toggleModalWinePairing: false
 })
 
 export const WinePairingTypes = Types
@@ -81,5 +81,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_WINE_PAIRING_REQUEST]: request,
   [Types.FETCH_WINE_PAIRING_SUCCESS]: success,
   [Types.FETCH_WINE_PAIRING_FAILURE]: failure,
-  [Types.TOGGLE_MODAL]: toggleModal,
+  [Types.TOGGLE_MODAL_WINE_PAIRING]: toggleModal,
 })

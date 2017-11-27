@@ -75,38 +75,38 @@ export default StyleSheet.create({
       alignItems: 'center',
       height: 80
    },
-   recipesSectionHeader: {
+   winePairingsSectionHeader: {
       flex: 1,
       //flexDirection: 'row',
       borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
       borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 2
    },
-   recipesSectionTitle: {
+   winePairingsSectionTitle: {
       fontSize: 25,
       paddingTop: 5,
       color: Colors.sectionTitle,
    },
-   recipesTitleText: {
+   winePairingsTitleText: {
       fontSize: 30,
       paddingTop: 10,
       color: Colors.text
     },
-   recipesSubtitleText: {
+   winePairingsSubtitleText: {
       fontWeight: 'normal',
       fontStyle: 'italic',
       fontSize: 14,
       color: Colors.text
    },
-   recipesHeaderContainer: {
+   winePairingsHeaderContainer: {
       flexDirection: 'row',
    },
-   recipesDistinctionText: {
+   winePairingsDistinctionText: {
       fontWeight: 'normal',
       fontStyle: 'italic',
     fontSize: 14,
       color: Colors.text
    },
-   recipesHeader: {
+   winePairingsHeader: {
       flex: 1,
       //paddingTop: Metrics.baseMargin,
       paddingTop: 40,
@@ -114,22 +114,22 @@ export default StyleSheet.create({
       backgroundColor: Colors.background,
       alignItems: 'center',
   },
-  recipesSection: {
+  winePairingsSection: {
       //borderRadius: 10,
       backgroundColor: Colors.backgroundLight,
       //margin: Metrics.section,
       //padding: Metrics.baseMargin
       marginTop: 10
   },
-  recipesSectionColumn: {
+  winePairingsSectionColumn: {
       padding: 10,
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center'
   },
-  recipeItemContainer: {
-      height: 100,
+  winePairingItemContainer: {
+      height: 150,
       //flex: 1,
       flexDirection: 'row',
       //alignItems: 'center',
@@ -140,21 +140,21 @@ export default StyleSheet.create({
       borderBottomWidth: StyleSheet.hairlineWidth
 
   },
-  recipeItemContainerText: {
+  winePairingItemContainerText: {
     flex: 3,
     flexDirection: 'column',
     //alignItems: 'center',
     marginRight: 5,
     //paddingBottom: 5,
   },
-  recipeItemContainerImage: {
+  winePairingItemContainerImage: {
     flex: 1,
     flexDirection: 'column',
     //alignItems: 'center',
     //padding: 10,
     //paddingBottom: 5,
   },
-  recipeItemTitle: {
+  winePairingItemTitle: {
     //height: 42,
     //width: Metrics.screenWidth - 40,
     textAlign: 'left',
@@ -166,7 +166,7 @@ export default StyleSheet.create({
     color: Colors.black,
     backgroundColor: Colors.transparent,
   },
-  recipeItemDescription: {
+  winePairingItemDescription: {
     //height: 42,
     //width: Metrics.screenWidth - 40,
     textAlign: 'left',
@@ -178,7 +178,7 @@ export default StyleSheet.create({
     color: Colors.charcoal,
     backgroundColor: Colors.transparent,
   },
-  recipeItemSubtitle: {
+  winePairingItemSubtitle: {
     height: 22,
     textAlign: 'center',
     fontFamily: Fonts.base,
@@ -191,13 +191,13 @@ export default StyleSheet.create({
     color: Colors.headerText,
     backgroundColor: Colors.transparent,
   },
-  recipeItemFooter: {
+  winePairingItemFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 5,
     //paddingBottom: 5,
   },
-  recipeItemNote: {
+  winePairingItemNote: {
     height: 15,
     textAlign: 'right',
     fontFamily: Fonts.base,
@@ -210,7 +210,7 @@ export default StyleSheet.create({
     color: Colors.noteText,
     backgroundColor: Colors.transparent,
   },
-  recipeItemAddress: {
+  winePairingItemAddress: {
     height: 15,
     textAlign: 'left',
     fontFamily: Fonts.base,
@@ -223,31 +223,31 @@ export default StyleSheet.create({
     color: Colors.noteText,
     backgroundColor: Colors.transparent,
   },
-  recipesText: {
+  winePairingsText: {
       ...Fonts.normal,
       color: Colors.sectionHeaderText,
       textAlign: 'justify'
   },
-  recipesPhoto: {
+  winePairingsPhoto: {
       flex: 1,
       height: 150,
       resizeMode: 'contain',
       alignSelf: 'stretch',
    },
-   recipesPhotoColumn: {
+   winePairingsPhotoColumn: {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center'
    },
-   recipesDistinctionColumn: {
+   winePairingsDistinctionColumn: {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       //backgroundColor: Colors.frost,
    },
-   recipesDistinction: {
+   winePairingsDistinction: {
       resizeMode: 'contain',
       margin: 5,
    },
@@ -276,28 +276,28 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
     color: 'white'
   },
-  recipesDirectionColumnA: {
+  winePairingsDirectionColumnA: {
     flex: 1, 
     justifyContent: 'center', alignItems: 'center', 
     backgroundColor: Colors.backgroundLigth, 
     borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
     borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   },
-  recipesDirectionColumnB: {
+  winePairingsDirectionColumnB: {
     flex: 4, 
     backgroundColor: Colors.backgroundLigth,
     borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,
     borderLeftWidth: 0, borderTopWidth: 0, borderRightWidth: 0, borderBottomWidth: 1
   },
-  recipesDirectionsText: {
+  winePairingsDirectionsText: {
       ...Fonts.normal,
       color: Colors.ro,
       textAlign: 'justify'
   },
-  recipesIngredientsRow: {
+  winePairingsIngredientsRow: {
     flex: 1, flexDirection: 'row'
   },
-  recipesIngredientsColumn: {
+  winePairingsIngredientsColumn: {
     flex: 1, 
     backgroundColor: Colors.backgroundLigth,
     borderTopColor: Colors.borderLight, borderBottomColor: Colors.borderDark,

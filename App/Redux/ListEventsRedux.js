@@ -14,7 +14,7 @@ const { Types, Creators } = createActions({
   fetchEventsSuccess: ['result'],
   fetchEventsFailure: ['errorMessage'],
   selectEvent: ['selectedEvent'],
-  toggleModal: null
+  toggleModalEvents: false
 })
 
 export const ListEventsTypes = Types
@@ -100,5 +100,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_EVENTS_SUCCESS]: success,
   [Types.FETCH_EVENTS_FAILURE]: failure,
   [Types.SELECT_EVENT]: selectEvent,
-  [Types.TOGGLE_MODAL]: toggleModal,
+  [Types.TOGGLE_MODAL_EVENTS]: toggleModal,
 })

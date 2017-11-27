@@ -133,7 +133,8 @@ class ListEventsScreen extends React.PureComponent {
           
           <Modal
             visible={this.props != null && this.props.showModal && this.props.selectedEvent != null}
-            onRequestClose={this.props.toggleModal}>
+            //onRequestClose={this.props.toggleModal}
+            >
             <ListRecipesScreen screenProps={{ selectedEvent: this.props.selectedEvent, toggle: this.props.toggleModal }} />
           </Modal>
         </ScrollView>
@@ -162,7 +163,7 @@ const mapDispatchToProps = (dispatch) => ({
     console.log('selectEvent', selectedEvent);
     dispatch(ListEventsActions.selectEvent(selectedEvent));
   },
-  toggleModal: () => dispatch(ListEventsActions.toggleModal()),
+  toggleModal: () => dispatch(ListEventsActions.toggleModalEvents()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListEventsScreen)

@@ -13,8 +13,8 @@ const { Types, Creators } = createActions({
   fetchRecipesRequest: ['recipeIds'],
   fetchRecipesSuccess: ['result'],
   fetchRecipesFailure: ['errorMessage'],
-  selectRecipe: ['recipe'],
-  toggleModal: null
+  selectRecipe: ['selectedRecipe'],
+  toggleModalRecipes: false
 })
 
 export const ListRecipesTypes = Types
@@ -79,7 +79,7 @@ export const failure = (state, action) => {
 export const selectRecipe = (state, action) => {
   const { selectedRecipe } = action;
   _log('At ListRecipesRedux: selectRecipe', selectedRecipe);
-  return state.merge({ selectedRecipe });
+  return state.merge({ selectedRecipe, showModal: true });
 }
 
 // toggle Modal
@@ -95,5 +95,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_RECIPES_SUCCESS]: success,
   [Types.FETCH_RECIPES_FAILURE]: failure,
   [Types.SELECT_RECIPE]: selectRecipe,
-  [Types.TOGGLE_MODAL]: toggleModal,
+  [Types.TOGGLE_MODAL_RECIPES]: toggleModal,
 })

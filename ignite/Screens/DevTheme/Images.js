@@ -21,7 +21,17 @@ const images = {
   directions: require('../Images/directions.jpg'),
   kitchen: require('../../../App/Images/kitchen-blue.png'),
   pepper: require('../../../App/Images/pepper.png'),
-  presentation: require('../../../App/Images/background-wood.png')
+  presentation: require('../../../App/Images/background-wood.png'),
+  MEDIUM_RED: require('../../../App/Images/MEDIUM_RED.png'),
+  BOLD_RED: require('../../../App/Images/BOLD_RED.png'),
+  DESSERT: require('../../../App/Images/DESSERT.png'),
+  ROSE: require('../../../App/Images/ROSE.png'),
+  LIGHT_RED: require('../../../App/Images/LIGHT_RED.png'),
+  SPARKLING: require('../../../App/Images/SPARKLING.png'),
+  SWEET_WHITE: require('../../../App/Images/SWEET_WHITE.png'),
+  DRY_WHITE: require('../../../App/Images/DRY_WHITE.png'),
+  RICH_WHITE: require('../../../App/Images/RICH_WHITE.png'),
+  bottle_with_a_heart: require('../../../App/Images/bottle-with-a-heart.png'),
 }
 
 export default images
