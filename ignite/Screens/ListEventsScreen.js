@@ -107,16 +107,32 @@ class ListEventsScreen extends React.PureComponent {
     )  
   }
 
+  /*
+
+  <CustomStatusBar backgroundColor={Colors.background} barStyle="light-content" />
+        <View style={styles.appBar}>
+        <Text style={styles.appBarText}>{'Event list'}</Text>
+        </View>
+
+  */
+
   render () {
     const __onPress = this.props.screenProps.toggle;
     //const __onPress = '';
     return (
       <View style={styles.mainContainer}>
 
-        <CustomStatusBar backgroundColor={Colors.background} barStyle="light-content" />
-        <View style={styles.appBar}>
-        <Text style={styles.appBarText}>{'Event list'}</Text>
-        </View>
+          <View style={styles.mainContainerHeader}>
+            <Image 
+              source={Images.pepper} 
+              style={ {flex: 1, width: null, height: null, resizeMode: 'cover'} } />
+
+          </View>
+
+         <View style={styles.banner}>
+            <Text style={styles.bannerTitle}>{'List of Events'}</Text>
+            <Text style={styles.bannerSubtitle}>{'Select one of them to show the agenda'}</Text>
+          </View>
 
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',

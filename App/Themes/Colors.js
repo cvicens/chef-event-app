@@ -22,6 +22,7 @@ const __color = {
   borderLightGrey: pattern.lightGrey,
   borderDark: pattern.upMaroon,
   lightTextBase: pattern.darkGrey,
+  lighterTextBase: pattern.pearl,
 }
 
 export const colors = {
@@ -33,7 +34,7 @@ export const colors = {
   buttonBackground: __color.backgroundOverBase,
   buttonText: __color.base,
   border: __color.base,
-  headerText: __color.textOverBase,
+  headerText: __color.lighterTextBase,
   noteText: __color.lightTextBase,
   sectionTitle: __color.base,
   sectionHeaderText: __color.base,

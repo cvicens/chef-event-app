@@ -115,7 +115,7 @@ class WinePairingScreen extends React.PureComponent {
       )
     } 
     return (
-      <Text>No wine pairing!</Text>
+      <Text></Text>
     )  
   }
 

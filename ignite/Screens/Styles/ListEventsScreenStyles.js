@@ -8,13 +8,45 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   mainContainer: {
     flex: 1,
-    backgroundColor: Colors.transparent
+      backgroundColor: Colors.backgroundLighter
+  },
+  mainContainerHeader: {
+    height: 100,
+    //flex: 1,
+    flexDirection: 'row',
+    //alignItems: 'center',
+    //padding: 10,
+    //marginHorizontal: 10,
+    //paddingBottom: 10,
+    borderBottomColor: Colors.borderLightGrey, 
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   container: {
       flex: 1,
       //flexDirection: 'column',
       //paddingTop: Metrics.baseMargin,
-      backgroundColor: Colors.backgroundLight
+      backgroundColor: Colors.backgroundLighter
+  },
+  banner: {
+    height: 90,
+    backgroundColor: "rgba(255, 255, 255, .98)",
+    borderWidth: 1,
+    borderColor: Colors.borderLightGrey,
+    marginHorizontal: 30,
+    marginTop: -45,
+    alignItems: 'center'
+  },
+  bannerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.black,
+    marginTop: 15,
+  },
+  bannerSubtitle: {
+    fontSize: 15,
+    fontWeight: 'normal',
+    color: Colors.charcoal,
+    marginTop: 5,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,

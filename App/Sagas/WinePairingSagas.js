@@ -4,6 +4,8 @@ import WinePairingActions from '../Redux/WinePairingRedux'
 
 const RCTFH = require('rct-fh');
 
+const SERVICE_NAME = "winepairing";
+
 // exported to make available for tests
 export const generateLogData = (state) => state
 
@@ -36,13 +38,13 @@ export function * fetchWinePairing (action) {
 
   try {
     var options = {
-        "path": "/service/winepairing?foodType=" + foodType,
+        "path": "/service/" + SERVICE_NAME + "/pairing?foodType=" + foodType,
         "method": "GET",
         "contentType": "application/json",
         "timeout": 25000 // timeout value specified in milliseconds. Default: 60000 (60s)
       }
-    //const result = yield call(RCTFH.cloud, options);
-    const result = yield call(fakeWirePairing);
+    const result = yield call(RCTFH.cloud, options);
+    //const result = yield call(fakeWirePairing);
     _log('fetch result', result);
 
     if (result) {

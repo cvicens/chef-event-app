@@ -184,7 +184,7 @@ class ListRecipesScreen extends React.PureComponent {
 
           <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.toggleModal }} />
 
-        </Modal>
+        </Modal>        
        
       </View>
     )
@@ -192,12 +192,9 @@ class ListRecipesScreen extends React.PureComponent {
 }
 
 /*
-  
-<Modal
-          visible={this.props != null && this.props.showModal && this.props.selectedRecipe != null}
-          onRequestClose={this.props.toggleModal}>
-          <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.props.toggleModal }} />
-        </Modal>
+
+
+
 */
 
 const mapStateToProps = (state) => {
