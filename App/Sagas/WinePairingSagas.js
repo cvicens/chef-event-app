@@ -4,7 +4,9 @@ import WinePairingActions from '../Redux/WinePairingRedux'
 
 const RCTFH = require('rct-fh');
 
-const SERVICE_NAME = "winepairing";
+// Original    service name ==> winepairing 
+// New default service name ==> wine-service
+const SERVICE_NAME = "cellar";
 
 // exported to make available for tests
 export const generateLogData = (state) => state

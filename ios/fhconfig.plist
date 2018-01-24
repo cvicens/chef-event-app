@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>host</key>
-	<string>https://core.apps.192.168.1.139.nip.io:8043</string>
+	<string>https://core.192.168.1.139.nip.io:8043</string>
 	<key>appid</key>
-	<string>j6kjj67zxm3hrfsk35rgeoej</string>
+	<string>ni47bd4n26j53hkri3muu5zn</string>
 	<key>projectid</key>
-	<string>j6kjj6yt6cw33wecw3zaqafw</string>
+	<string>ni47bd2e3tr3ma75i7jgqu7h</string>
 	<key>appkey</key>
-	<string>2d980b860f473c85b74be917c20d5c9ef5e344e</string>
+	<string>275b994e9b4c27a6546d0f58266788b8182c6500</string>
 	<key>connectiontag</key>
 	<string>0.0.1</string>
 </dict>

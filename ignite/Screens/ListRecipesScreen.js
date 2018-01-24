@@ -193,7 +193,15 @@ class ListRecipesScreen extends React.PureComponent {
 
 /*
 
+<Modal
+          presentationStyle={'pageSheet'}
+          visible={this.props != null && this.props.showModal && this.props.selectedRecipe != null}
+          //onRequestClose={this.toggleModal}
+          >
 
+          <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.toggleModal }} />
+
+        </Modal>        
 
 */
 

@@ -172,7 +172,8 @@ class WinePairingScreen extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    result: state.winepairing.result
+    result: state.winepairing.result.constructor === Array && state.winepairing.result.length > 0 ? 
+      state.winepairing.result[0] : state.winepairing.result
   }
 }
 
