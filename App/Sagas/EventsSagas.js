@@ -8,6 +8,13 @@ const RCTFH = require('rct-fh');
 // exported to make available for tests
 export const generateLogData = (state) => state
 
+function getIsoDate (date) {
+  if (!date) {
+    return null;
+  }
+  return date.getFullYear() + "-" + ('0' + (date.getMonth() + 1)).slice(-2) + "-" + ('0' + date.getDate()).slice(-2);
+}
+
 function _log(message) {
    if (__DEV__ && console.tron) {
     console.tron.log(message);
@@ -34,7 +41,7 @@ export function * fetchEvents (action) {
 
   try {
     var options = {
-        "path": "/events/" + countryCode.toUpperCase() + '/' + city.toUpperCase(), //only the path part of the url, the host will be added automatically
+        "path": "/events/" + countryCode.toUpperCase() + '/' + city.toUpperCase() + '/' + getIsoDate(new Date()), //only the path part of the url, the host will be added automatically
         "method": "GET", //all other HTTP methods are supported as well. For example, HEAD, DELETE, OPTIONS
         "contentType": "application/json",
         "timeout": 25000 // timeout value specified in milliseconds. Default: 60000 (60s)
