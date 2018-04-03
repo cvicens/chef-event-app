@@ -148,9 +148,11 @@ class ListRecipesScreen extends React.PureComponent {
     return (
       <View style={styles.mainContainer}>
 
+        <StatusBar translucent backgroundColor="blue" barStyle="light-content" hidden={true} />
+
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',
-          paddingTop: 30,
+          paddingTop: 20,
           paddingHorizontal: 10,
           zIndex: 10
         }}>
@@ -183,7 +185,7 @@ class ListRecipesScreen extends React.PureComponent {
 
           <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.toggleModal }} />
 
-        </Modal> 
+        </Modal>  
        
       </View>
     )
@@ -199,7 +201,7 @@ class ListRecipesScreen extends React.PureComponent {
 
           <WinePairingScreen screenProps={{ selectedRecipe: this.props.selectedRecipe, toggle: this.toggleModal }} />
 
-        </Modal>         
+        </Modal>        
 
 */
 

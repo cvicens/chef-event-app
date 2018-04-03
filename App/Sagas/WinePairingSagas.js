@@ -6,7 +6,8 @@ const RCTFH = require('rct-fh');
 
 // Original    service name ==> winepairing 
 // New default service name ==> wine-service
-const SERVICE_NAME = "wine-pairing";
+//const SERVICE_NAME = "wine-pairing";
+const SERVICE_NAME = "zzpairing";
 const Dummy = "dummy";
 
 // exported to make available for tests

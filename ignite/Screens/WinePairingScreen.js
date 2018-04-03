@@ -140,7 +140,7 @@ class WinePairingScreen extends React.PureComponent {
 
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',
-          paddingTop: 30,
+          paddingTop: 20,
           paddingHorizontal: 10,
           zIndex: 10
         }}>

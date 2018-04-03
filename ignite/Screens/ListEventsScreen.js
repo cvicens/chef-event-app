@@ -136,11 +136,11 @@ class ListEventsScreen extends React.PureComponent {
 
         <TouchableOpacity onPress={__onPress} style={{
           position: 'absolute',
-          paddingTop: 30,
+          paddingTop: 20,
           paddingHorizontal: 10,
           zIndex: 10
         }}>
-          <Image source={Images.closeButton} />
+          <Image source={Images.backButton} />
         </TouchableOpacity>
 
         <ScrollView style={styles.container} ref='container'>
